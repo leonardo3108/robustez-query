@@ -1,4 +1,6 @@
-# dp4nlp
+# Análise de Robustez de Mecanismos de Busca Quanto a Ruídos na Query
+Leonardo Augusto da Silva Pacheco
+Marcus Vinícius Borela de Castro
 
 Apresentação de Projeto Final da Disciplina DL for NLP:
 https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing
