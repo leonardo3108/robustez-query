@@ -34,8 +34,9 @@ Queries originais:
 ## Próximos passos (TO DO):
 1. Revisão
 2. Dense ranking (incluindo avaliação e consolidação)
-3. Análise dos resultados
-4. Produção de ruídos e reprodução dos experimentos (próxima sprint)
+3. Análise dos resultados e gráficos
+4. Preparação da próxima apresentação
+5. Produção de ruídos e reprodução dos experimentos (próxima sprint)
 
 ## Referências:
 * [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
