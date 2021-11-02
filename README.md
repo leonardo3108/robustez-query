@@ -20,8 +20,8 @@ Mais informações:
 ## Dados preparados
 Queries originais:
 * 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/queries-originals.txt)
-* DCG@10 do BM25: [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/dcg10_originals.csv)
-* nDCG@10 do BM25: [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/ndcg10_originals.csv)
+* DCG@10 (BM25 e rerank): [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/dcg10_originals.csv)
+* nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/ndcg10_originals.csv)
 
 ## Cadernos
 1. Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
