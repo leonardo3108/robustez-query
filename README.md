@@ -2,7 +2,7 @@
 
 **Autores:** Leonardo Augusto da Silva Pacheco e  Marcus Vinícius Borela de Castro
 
-**Projeto Final da Disciplina [Deep Learning for NLP](https://www.dac.unicamp.br/portal/caderno-de-horarios/2021/2/S/P/FEEC/IA376)**
+**Projeto Final da Disciplina** [IA376, Turma E - Tópicos em Engenharia de Computação VII - 2S/2021](https://www.dac.unicamp.br/portal/caderno-de-horarios/2021/2/S/P/FEEC/IA376) - **Deep Learning for NLP**
 
 ## Documentação do projeto
 * [Apresentação inicial](https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing)
@@ -17,9 +17,6 @@ Mais informações:
 * TREC 2020 Deep Learning Track: https://trec.nist.gov/data/deep2020.html
 * TREC 2020 Deep Learning Track Guidelines: https://microsoft.github.io/msmarco/TREC-Deep-Learning-2020
 
-## Referências:
-* Tutorial - Livro: [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin,1 Rodrigo Nogueira,1 and Andrew Yates]( https://drive.google.com/file/d/1d0DEGZb83m16LBVMJcEsmtjS2CjBzxZq/view?usp=sharing)
-
 ## Dados preparados
 Queries originais:
 * 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/queries-originals.txt)
@@ -32,4 +29,9 @@ Queries originais:
 * Obtenção do IDCG das queries originais: [IDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
 * Teste básico de uso do BM25 e Rerank sobre o MsMarco Passage: [Teste Marco Passage + BM25 + Rerank.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/IDCG.ipynb)
 * Obtenção do nDCG do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
- 
+
+## Referências:
+* [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
+* [Overview of the TREC 2020 Deep Learning Track](https://arxiv.org/abs/2102.07662) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/OVERVIEW%20OF%20THE%20TREC%202020%20DEEP%20LEARNING%20TRACK.pdf))
+* [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
+* [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
