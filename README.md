@@ -32,11 +32,8 @@ Queries originais:
 6. Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
 
 ## Próximos passos (TO DO):
-1. Revisão
-2. Dense ranking (incluindo avaliação e consolidação)
-3. Análise dos resultados e gráficos
-4. Preparação da próxima apresentação
-5. Produção de ruídos e reprodução dos experimentos (próxima sprint)
+- Ver issues: https://github.com/leonardo3108/robustez-query/issues
+- Ver kanban: https://github.com/users/leonardo3108/projects/1
 
 ## Referências:
 * [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
