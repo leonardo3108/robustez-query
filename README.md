@@ -33,7 +33,7 @@ Queries originais:
 
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
-- Ver kanban: https://github.com/users/leonardo3108/projects/1
+- Ver kanban: https://github.com/users/leonardo3108/projects/1?fullscreen=true
 
 ## Referências:
 * [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
