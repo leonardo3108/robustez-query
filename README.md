@@ -24,13 +24,12 @@ Queries originais:
 * nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
 
 ## Cadernos
-. Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
-. Obtenção do IDCG das queries originais: [IDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/IDCG.ipynb)
-. Teste básico de uso do BM25 e Rerank sobre o MsMarco Passage: [Teste Marco Passage + BM25 + Rerank.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Teste%20Marco%20Passage%20+%20BM25%20+%20Rerank.ipynb)
-. Obtenção do nDCG@10 do BM25+Busca Densa sobre as queries originais: [Originals + Dense + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Dense%20%2B%20nDCG.ipynb)
-. Obtenção do nDCG@10 do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
-. Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
-. Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
+* Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
+* Teste básico de uso do BM25 e Rerank sobre o MsMarco Passage: [Teste Marco Passage + BM25 + Rerank.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Teste%20Marco%20Passage%20+%20BM25%20+%20Rerank.ipynb)
+* Obtenção do nDCG@10 do BM25+Busca Densa sobre as queries originais: [Originals + Dense + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Dense%20%2B%20nDCG.ipynb)
+* Obtenção do nDCG@10 do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
+* Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
+* Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
 
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
