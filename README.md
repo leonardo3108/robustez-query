@@ -24,19 +24,21 @@ Queries originais:
 * nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/ndcg10_originals.csv)
 
 ## Cadernos
-1. Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
-2. Obtenção do IDCG das queries originais: [IDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/IDCG.ipynb)
-3. Teste básico de uso do BM25 e Rerank sobre o MsMarco Passage: [Teste Marco Passage + BM25 + Rerank.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Teste%20Marco%20Passage%20+%20BM25%20+%20Rerank.ipynb)
-4. Obtenção do nDCG@10 do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
-5. Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
-6. Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
+. Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
+. Obtenção do IDCG das queries originais: [IDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/IDCG.ipynb)
+. Teste básico de uso do BM25 e Rerank sobre o MsMarco Passage: [Teste Marco Passage + BM25 + Rerank.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Teste%20Marco%20Passage%20+%20BM25%20+%20Rerank.ipynb)
+. Obtenção do nDCG@10 do BM25+Busca Densa sobre as queries originais: [Originals + Dense + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20Dense%20%2B%20nDCG.ipynb)
+. Obtenção do nDCG@10 do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
+. Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
+. Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
 
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
 - Ver kanban: https://github.com/users/leonardo3108/projects/1?fullscreen=true
 
 ## Referências:
-* [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
-* [Overview of the TREC 2020 Deep Learning Track](https://arxiv.org/abs/2102.07662) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/OVERVIEW%20OF%20THE%20TREC%202020%20DEEP%20LEARNING%20TRACK.pdf))
+* [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/leonardo3108/robustez-query/docs/blob/main/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
+* [Overview of the TREC 2020 Deep Learning Track](https://arxiv.org/abs/2102.07662) ([anotações](https://github.com/leonardo3108/robustez-query/docs/blob/main/OVERVIEW%20OF%20THE%20TREC%202020%20DEEP%20LEARNING%20TRACK.pdf))
 * [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
 * [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
+* [Distilling Dense Representations for Ranking using Tightly-Coupled Teachers. Sheng-Chieh Lin, Jheng-Hong Yang, and Jimmy Lin. arXiv:2010.11386, October 2020.](https://arxiv.org/abs/2010.11386)
