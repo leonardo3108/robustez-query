@@ -1,8 +1,10 @@
 # Análise de Robustez de Mecanismos de Busca Quanto a Ruídos na Query
 
-**Autores:** Leonardo Augusto da Silva Pacheco e  Marcus Vinícius Borela de Castro
+**Projeto Final da Disciplina**  [IA376, Turma E - Tópicos em Engenharia de Computação VII - 2021.2S](https://www.dac.unicamp.br/portal/caderno-de-horarios/2021/2/S/P/FEEC/IA376)
 
-**Projeto Final da Disciplina** [IA376, Turma E - Tópicos em Engenharia de Computação VII - 2021.2S](https://www.dac.unicamp.br/portal/caderno-de-horarios/2021/2/S/P/FEEC/IA376) - **Deep Learning for NLP**
+**Deep Learning for NLP**
+
+**Autores:** Leonardo Augusto da Silva Pacheco e  Marcus Vinícius Borela de Castro
 
 ## Documentação do projeto
 * [Apresentação inicial](https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing)
