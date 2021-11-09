@@ -43,4 +43,4 @@ Queries originais:
 * [Overview of the TREC 2020 Deep Learning Track](https://arxiv.org/abs/2102.07662) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/docs/OVERVIEW%20OF%20THE%20TREC%202020%20DEEP%20LEARNING%20TRACK.pdf))
 * [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
 * [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
-* [Distilling Dense Representations for Ranking using Tightly-Coupled Teachers. Sheng-Chieh Lin, Jheng-Hong Yang, and Jimmy Lin. arXiv:2010.11386, October 2020.](https://arxiv.org/abs/2010.11386)
+* [Pyserini: An Easy-to-Use Python Toolkit to Support Replicable IR Research with Sparse and Dense Representations. Lin, Jimmy & Ma, Xueguang & Lin, Sheng-Chieh & Yang, Jheng-Hong & Pradeep, Ronak & Nogueira, Rodrigo. (2021).](https://cs.uwaterloo.ca/~jimmylin/publications/Lin_etal_SIGIR2021_Pyserini.pdf)
