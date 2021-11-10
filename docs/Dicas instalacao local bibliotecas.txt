@@ -1,0 +1,9 @@
+# comandos de instalação de libraries necessárias para uso local
+
+conda activate robustez-query
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  farm-haystack
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+https://github.com/castorini/pygaggle.git
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
+conda install -y -c pytorch faiss-cpu
+
+
