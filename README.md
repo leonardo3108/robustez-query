@@ -32,6 +32,7 @@ Informações adicionais:
 ## Dados preparados
 Queries originais:
 * 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/data/queries-originals.txt)
+* Passagens com julgamentos do TREC 2020 DL Track: [passages-with-judment.txt](https://raw.githubusercontent.com/leonardo3108/robustez-query/main/data/passages-with-judment.txt) (utilizado na busca densa)
 * DCG@10 (BM25 e rerank): [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_originals.csv)
 * nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
 
