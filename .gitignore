@@ -1,0 +1,13 @@
+*__pycache__*
+*.pytest_cache*
+.coverage
+*.code-workspace
+*checkpoint.ipynb
+.idea/
+.vscode/
+teste/*
+pylint-report.txt
+*.log
+*.pyc
+temp.properties
+temp/*

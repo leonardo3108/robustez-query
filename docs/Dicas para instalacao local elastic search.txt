@@ -1,0 +1,24 @@
+Como instalar elasticsearch local
+
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-linux-x86_64.tar.gz -q
+    mkdir temp
+    mv elasticsearch-7.9.2-linux-x86_64.tar.gz temp
+    cd temp
+    tar -xzf elasticsearch-7.9.2-linux-x86_64.tar.gz
+    chown -R daemon:daemon elasticsearch-7.9.2
+    sudo chown -R daemon:daemon elasticsearch-7.9.2
+    cd elasticsearch-7.9.2/
+    # investigando se java_home está ok. Setar path sem o final "/bin/java"
+    echo $JAVA_HOME
+    java -version
+    sudo update-alternatives --config java
+    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    # para resolver o problema de iniciar não como root:
+    #   conceder grant
+    sudo chmod -R 777 .
+    #   não usar sudo ao ativar o serviço
+    ./bin/elasticsearch
+
+
+Como iniciar serviço elasticsearch local
+    ./bin/elasticsearch
