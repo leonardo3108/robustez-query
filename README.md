@@ -15,15 +15,10 @@ Dados:
 * MS MARCO Passage Queries: https://msmarco.blob.core.windows.net/msmarcoranking/queries.tar.gz
 * MS MARCO Passages: https://msmarco.blob.core.windows.net/msmarcoranking/collection.tar.gz
 
-Mais informações:
+Informações adicionais:
 * TREC 2020 Deep Learning Track: https://trec.nist.gov/data/deep2020.html
 * TREC 2020 Deep Learning Track Guidelines: https://microsoft.github.io/msmarco/TREC-Deep-Learning-2020
-
-## Dados preparados
-Queries originais:
-* 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/data/queries-originals.txt)
-* DCG@10 (BM25 e rerank): [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_originals.csv)
-* nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
+* MS MARCO: https://microsoft.github.io/msmarco/
 
 ## Cadernos
 * Análise exploratória dos datasets: [Exploring TREC Deep Learning 2020.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Exploring%20TREC%20Deep%20Learning%202020.ipynb)
@@ -33,6 +28,12 @@ Queries originais:
 * Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
 * Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Consolida%C3%A7%C3%A3o%20das%20m%C3%A9tricas.ipynb)
 * Geração de figura: [Figure nDGC10 Originals.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Figure%20nDGC10%20Originals.ipynb)
+
+## Dados preparados
+Queries originais:
+* 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/data/queries-originals.txt)
+* DCG@10 (BM25 e rerank): [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_originals.csv)
+* nDCG@10 (BM25 e rerank): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
 
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
