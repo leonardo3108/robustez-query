@@ -1,7 +1,6 @@
 """
 Objetivo: criar base local msmarco-passage com julgamentos
 """
-
 import requests
 from haystack.document_store.elasticsearch import ElasticsearchDocumentStore
 from haystack.retriever.dense import DensePassageRetriever
