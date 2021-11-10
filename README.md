@@ -27,7 +27,7 @@ Informações adicionais:
 * Obtenção do nDCG@10 do BM25 sobre as queries originais: [Originals + BM25 + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20nDCG.ipynb)
 * Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre as queries originais: [Originals + BM25 + Rerank + nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Originals%20%2B%20BM25%20%2B%20Rerank%20%2B%20nDCG.ipynb)
 * Consolidação das métricas: [Consolidação das métricas.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/consolidar_metricas.ipynb)
-* Geração de gráficos: [Figure nDGC10 Originals.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Figure%20nDGC10%20Originals.ipynb)
+* Geração de gráficos: [gerar_graficos_comparacao_metodos.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/Figure%20nDGC10%20Originals.ipynb)
 
 ## Dados preparados
 Queries originais:
