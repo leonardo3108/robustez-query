@@ -8,6 +8,7 @@
 
 ## Documentação do projeto
 * [Apresentação inicial](https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing)
+* [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/Apresenta%C3%A7%C3%A3o%202%20-%2020211111.pptx)
 
 ## Datasets
 Dados:
