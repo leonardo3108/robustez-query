@@ -40,10 +40,12 @@ Queries originais:
 
 ## Ruídos
 Serão considerados os seguintes tipos de ruídos:
-. permutação de palavras a uma probabilidade de 10%, com limite de 3 palavras*
-. deleção de palavras a uma probabilidade de 10%*
+* permutação de palavras a uma probabilidade de 10%, com limite de 3 palavras(1)
+* deleção de palavras a uma probabilidade de 10%(1)
 
-* Código adaptado do utilizado na colocação de ruídos aplicada no artigo [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
+
+(1) Código adaptado do utilizado na colocação de ruídos aplicada no artigo [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
+
 
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
