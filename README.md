@@ -8,7 +8,7 @@
 
 ## Documentação do projeto
 * [Apresentação inicial](https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing)
-* [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/Apresenta%C3%A7%C3%A3o%202%20-%2020211111.pptx) (entrega parcial 1)
+* [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%202%20-%2020211111.pptx) (entrega parcial 1)
 
 ## Datasets
 Dados:
@@ -39,9 +39,11 @@ Queries originais:
 
 
 ## Ruídos
-Serão considerados os seguintes tipos de ruídos:
+Serão analisados os impactos dos seguintes tipos de ruídos:
 * permutação de palavras a uma probabilidade de 10%, com limite de 3 palavras(1)
 * deleção de palavras a uma probabilidade de 10%(1)
+* tradução para outra língua e retorno à língua original
+* alguns erros ortográficos comuns   
 
 
 (1) Código adaptado do utilizado na colocação de ruídos aplicada no artigo [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
