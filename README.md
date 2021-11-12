@@ -37,6 +37,14 @@ Queries originais:
 * DCG@10 (BM25, rerank e densa) e IDCG@10: [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_originals.csv)
 * nDCG@10 (BM25, rerank e densa): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
 
+
+## Ruídos
+Serão considerados os seguintes tipos de ruídos:
+. permutação de palavras a uma probabilidade de 10%, com limite de 3 palavras*
+. deleção de palavras a uma probabilidade de 10%*
+
+* Código adaptado do utilizado na colocação de ruídos aplicada no artigo [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
+
 ## Próximos passos (TO DO):
 - Ver issues: https://github.com/leonardo3108/robustez-query/issues
 - Ver kanban: https://github.com/users/leonardo3108/projects/1?fullscreen=true

@@ -49,23 +49,7 @@ def delete_random_token(sentence, probability):
     return " ".join(ret)
 
 
-def replace_random_token(sentence, probability, filler_token="BLANK"):
-    """Replace random tokens in a String by a filler token with given probability
-
-    Args:
-        sentence: a String
-        probability: probability to replace each token
-        filler_token: token replacing chosen tokens
-
-    """
-    sentence_split = sentence.split()
-    for i in range(len(sentence_split)):
-        if random_bool(probability):
-            sentence_split[i] = filler_token
-    return " ".join(sentence_split)
-
-
-def random_token_permutation(sentence, _range):
+def random_token_permutation(sentence, _range:int = 3):
     """Random permutation over the tokens of a String, restricted to a range, drawn from the uniform distribution
 
     Args:
@@ -77,3 +61,4 @@ def random_token_permutation(sentence, _range):
     new_indices = [i+random.uniform(0, _range+1) for i in range(len(sentence_split))]
     res = [x for _, x in sorted(zip(new_indices, sentence_split), key=lambda pair: pair[0])]
     return " ".join(res)
+
