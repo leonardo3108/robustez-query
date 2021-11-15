@@ -6,4 +6,5 @@ pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+ht
 pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
 conda install -y -c pytorch faiss-cpu
 
-
+# para acesso a bd msaccess:
+conda install -c anaconda pyodbc   
