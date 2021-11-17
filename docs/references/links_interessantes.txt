@@ -1,0 +1,3 @@
+
+Training Your Own "Dense Passage Retrieval" Model (collab):
+    https://colab.research.google.com/github/deepset-ai/haystack/blob/master/tutorials/Tutorial9_DPR_training.ipynb#scrollTo=6QIbSf7XVa1g

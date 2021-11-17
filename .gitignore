@@ -8,3 +8,4 @@
 *.pyc
 temp.properties
 temp/*
+mlruns/*

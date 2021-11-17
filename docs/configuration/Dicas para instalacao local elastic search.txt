@@ -27,3 +27,6 @@ Como testar se ok
     (browser)
     http://localhost:9200/
     http://localhost:9200/_cluster/health
+
+    Para ver índices:
+    http://localhost:9200/_cat/indices

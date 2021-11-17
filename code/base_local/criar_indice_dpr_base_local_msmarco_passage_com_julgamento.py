@@ -22,8 +22,13 @@ retriever = DensePassageRetriever(
     document_store=doc_store,
     query_embedding_model='facebook/dpr-question_encoder-single-nq-base',
     passage_embedding_model='facebook/dpr-ctx_encoder-single-nq-base',
-    use_gpu=False,
+    use_gpu=True,
     embed_title=True
 )
 
+print(f"\nÍndices do serviço ES: {requests.get('http://localhost:9200/_cat/indices')}")
+
+exit()
 doc_store.update_embeddings(retriever=retriever)
+
+print(f"\nÍndices do serviço ES: {requests.get('http://localhost:9200/_cat/indices')}")
