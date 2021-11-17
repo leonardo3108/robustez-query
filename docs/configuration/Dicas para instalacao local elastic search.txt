@@ -19,6 +19,11 @@ Como instalar elasticsearch local
     #   não usar sudo ao ativar o serviço
     ./bin/elasticsearch
 
-
 Como iniciar serviço elasticsearch local
-    ./bin/elasticsearch
+    cd ~/robustez-query/temp/elasticsearch-7.9.2/bin/
+    ./elasticsearch
+
+Como testar se ok
+    (browser)
+    http://localhost:9200/
+    http://localhost:9200/_cluster/health

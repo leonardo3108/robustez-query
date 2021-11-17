@@ -16,11 +16,13 @@ doc_store = ElasticsearchDocumentStore(
     similarity='dot_product'
 )
 
+print(f"\n**** nqtd registros: {doc_store.get_document_count()}\n\n\n")
+
 retriever = DensePassageRetriever(
     document_store=doc_store,
     query_embedding_model='facebook/dpr-question_encoder-single-nq-base',
     passage_embedding_model='facebook/dpr-ctx_encoder-single-nq-base',
-    use_gpu=True,
+    use_gpu=False,
     embed_title=True
 )
 

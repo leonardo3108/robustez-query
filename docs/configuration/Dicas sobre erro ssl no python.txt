@@ -1,0 +1,14 @@
+Alguns passos:
+1. Identificar arquivo com certificados usados pelo python
+    import certifi
+    print(certifi.where())
+
+    No meu caso, retornou: /home/luisandresilva/anaconda3/envs/robustez-query/lib/python3.7/site-packages/certifi/cacert.pem
+
+2. Baixar cadeia de certificados válidos de algum site chamado com https
+    Usei site: https://api.github.com
+    Segui passos para baixar: https://medium.com/@menakajain/export-download-ssl-certificate-from-server-site-url-bcfc41ea46a2
+
+    Obs.: Parece que os browsers automaticamente atualizam a cadeia de certificados.
+
+3. Copiar o conteúdo do arquivo baixado no passo 2 no final do arquivo indicado no passo 1
