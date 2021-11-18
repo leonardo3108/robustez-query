@@ -1,0 +1,4 @@
+cod,abbreviation,name
+1,nDCG@10,Normalized Discounted cumulative gain at position 10
+2,DCG@10,Discounted cumulative gain at position 10
+3,iDCG@10,Ideal Discounted cumulative gain at position 10

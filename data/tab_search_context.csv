@@ -1,0 +1,4 @@
+cod,descr_ranking_technique,descr_data_description,record_count
+1,ReRank with yyy,TREC 2020 MsMarco Passage, 8841823
+2,DPR with xxx,,TREC 2020 MsMarco Passage with judment,11224
+

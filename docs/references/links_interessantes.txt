@@ -1,3 +1,12 @@
 
 Training Your Own "Dense Passage Retrieval" Model (collab):
     https://colab.research.google.com/github/deepset-ai/haystack/blob/master/tutorials/Tutorial9_DPR_training.ipynb#scrollTo=6QIbSf7XVa1g
+
+Uso de base de dados cloud-based oracle (atp - Autonomous Transaction Processing)
+    Site oracle:
+    https://www.oracle.com/autonomous-database/autonomous-transaction-processing/
+
+    Como acessar por google collab:
+    https://franckpachot.medium.com/a-jupyter-notebook-on-google-collab-to-connect-to-the-oracle-cloud-atp-5e88b12282b0
+
+
