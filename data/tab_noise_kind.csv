@@ -1,2 +1,8 @@
-cod,descr,percent_prob_permutation,percent_prob_deletion,if_translation_to_from_portuguese
-1,Permutation Noise with 10% probability,0.1,0,N
+cod,descr
+0,No changes in the text
+1,Permutation of words: first and second
+2,Permutation of words: last and penultimate
+3,Permutation of words: first and last
+4,Deletion of words in positions: [2]
+5,Deletion of words in positions: [penultimate]
+6,Deletion of words by probability: 20%
