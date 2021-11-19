@@ -1,5 +1,5 @@
 Como instalar elasticsearch local
-
+Ubuntu
     wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-linux-x86_64.tar.gz -q
     mkdir temp
     mv elasticsearch-7.9.2-linux-x86_64.tar.gz temp
@@ -19,9 +19,29 @@ Como instalar elasticsearch local
     #   não usar sudo ao ativar o serviço
     ./bin/elasticsearch
 
+
+Windows
+    baixar .msi do site elasticsearch
+        https://www.elastic.co/guide/en/elasticsearch/reference/current/windows.html
+    optar por nova configuração de pastas para não haver espaço nos nomes
+        Exemplo: c:\elasticsearch
+    executar comand prompt como administrador
+        executar elastic(...).msi
+    
+    
+
 Como iniciar serviço elasticsearch local
+Ubuntu
     cd ~/robustez-query/temp/elasticsearch-7.9.2/bin/
     ./elasticsearch
+
+Windows
+    É necessário que o JAVA_HOME aponte também para a pasta do elasticsearch\bin\jdk
+        setx JAVA_HOME "C:\ElasticSearch\7.15.2\jdk"
+            (Necessário reiniciar o cmd prompt)
+
+    executar comand prompt como administrador
+         executar C:\ElasticSearch\7.15.2\bin\elasticsearch.exe
 
 Como testar se ok
     (browser)
