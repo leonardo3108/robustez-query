@@ -41,5 +41,5 @@ for index, original_query in df_original_query.iterrows():
     noisy_text_list['cod_original_query'].append(original_query['cod'])
     noisy_text_list['text'].append(noisy_text)
 
-util_bd_pandas.save_noisy_query(noisy_text_list,6 , "Deletion of words by probability: 20%")
+util_bd_pandas.save_noisy_query(noisy_text_list,6 , "Deletion of words by probability: 20% (at least the central word)")
 

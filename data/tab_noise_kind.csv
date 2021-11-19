@@ -5,4 +5,4 @@ cod,descr
 3,Permutation of words: first and last
 4,Deletion of words in positions: [2]
 5,Deletion of words in positions: [penultimate]
-6,Deletion of words by probability: 20%
+6,Deletion of words by probability: 20% (at least the central word)
