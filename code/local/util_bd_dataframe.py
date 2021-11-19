@@ -7,6 +7,8 @@ import numpy as np
 const_number_of_queries = 54
 
 def read_df_original_query():
+    """Reads data from tab_original_query.csv in dataframe 
+    """
     df_original_query = pd.read_csv('data/tab_original_query.csv', sep = ';', 
         header=0, dtype= {'cod':np.int64, 'text':str, 'val_idcg10': str})
     df_original_query['val_idcg10'] = df_original_query['val_idcg10'].astype(float)        
@@ -16,12 +18,12 @@ def read_df_original_query():
 
 
 def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_descr_noise_kind:str):
-    """Appends data passed in tab_noise_query.csv.
+    """Appends data passed in tab_noise_query.csv and insert new nose_kind in tab_noise_kind.csv
 
     Args:
         parm_dict_noisy_text (dict): {'cod_original_query': [], 'text': []}
-        parm_cod_noise_kind (int): cod of noise kind (see tab_noise_kind.csv)
-        parm_descr_noise_kind (str): description of noie kind
+        parm_cod_noise_kind (int): cod of noise kind (can not exists in tab_noise_kind.csv)
+        parm_descr_noise_kind (str): description of new noise kind
     """
     assert 'cod_original_query' in parm_dict_noisy_text, f"Error: expected 'cod_original_query' in parm_dict_noisy_text"
     assert 'text' in parm_dict_noisy_text, f"Error: expected 'cod_original_query' in parm_dict_noisy_text"
