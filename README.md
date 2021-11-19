@@ -55,6 +55,7 @@ Iniciais:
 
 Queries originais e ruidosas:
 * Manipulação das queries de tradução: [noisy_queries_translation-pt.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/noisy_queries_translation_pt.ipynb).
+* Geração de typos nas queries: [noisy_queries_typo.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/noisy_queries_typo.ipynb).
 * Obtenção do nDCG@10 do BM25 sobre todas as queries (originais+ruidosas): [All_queries+BM25+Rerank+nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/All_queries+BM25+Rerank+nDCG.ipynb)
 * Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre todas as queries (originais+ruidosas): [All_queries+BM25+Rerank+nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/All_queries%2BBM25%2BRerank%2BnDCG.ipynb)
 
