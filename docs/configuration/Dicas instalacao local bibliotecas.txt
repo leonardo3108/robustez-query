@@ -1,14 +1,37 @@
 # comandos de instalação de libraries necessárias para uso local
 
+
 conda activate robustez-query
 pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  farm-haystack
+on windows: pip install farm-haystack -f https://download.pytorch.org/whl/torch_stable.html
+
 pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+https://github.com/castorini/pygaggle.git
 pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pandas 
 conda install -y -c pytorch faiss-cpu
+        pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org faiss-cpu --no-cache
+
 conda install -c anaconda requests
+conda install -c anaconda pandas
 
-Obs.: Em caso de CondaHTTPError: conda config --set ssl_verify no
+Obs.: 
+Evitar misturar conda com pip:
+    https://stackoverflow.com/questions/68463220/pandas-importing-error-importerror-cannot-import-name-dtypearg-from-pandas
+    https://github.com/pandas-dev/pandas/issues/42506 
 
+i) Em caso de CondaHTTPError: conda config --set ssl_verify no
+ii) Em caso de problema com numpy
+    python -m pip uninstall numpy
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org numpy==1.19.2
+
+    # pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org numpy
+
+    Msg:
+        Installing collected packages: numpy
+        ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+        tensorflow 2.5.0 requires numpy~=1.19.2, but you have numpy 1.21.4 which is incompatible.
+        ray 1.5.0 requires pydantic>=1.8, but you have pydantic 1.7.4 which is incompatible.
+        Successfully installed numpy-1.21.4
 
 # para acesso a bd msaccess:
 conda install -c anaconda pyodbc   
