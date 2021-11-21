@@ -1,9 +1,10 @@
 Baixar versão miniconda python 3.7 em https://docs.conda.io/en/latest/miniconda.html
 Instalar em pasta padrão (C:\Users\borela\Miniconda3)
 Clicar opções para adicionar miniconda3 ao path do windows e default python
+conda create -n robustez-query python=3.7
 
 Para instalar libraries em um env:
     iniciar anaconda prompt 
     executar comandos de conda  
         conda env list
-        conda activate unicamp 
+        conda activate robustez-query 

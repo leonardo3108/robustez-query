@@ -1,18 +1,28 @@
 # comandos de instalação de libraries necessárias para uso local
 
+Instalação de haystack:
+on ubuntu
+    (conda activate robustez-query)
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  farm-haystack
+on windows:
+    pip install farm-haystack -f https://download.pytorch.org/whl/torch_stable.html
+    Tentando: 
+        (após conda activate robustez-query (python 3.7))
+        pip install git+https://github.com/deepset-ai/haystack.git
 
-conda activate robustez-query
-pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  farm-haystack
-on windows: pip install farm-haystack -f https://download.pytorch.org/whl/torch_stable.html
 
-pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+https://github.com/castorini/pygaggle.git
-pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
-pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pandas 
-conda install -y -c pytorch faiss-cpu
+Pygaggle e pyserini
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+https://github.com/castorini/pygaggle.git
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pandas 
+
+    (se não tiver sido instalado o hastack, que já tem faiss-cpu)
+    conda install -y -c pytorch faiss-cpu
         pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org faiss-cpu --no-cache
 
-conda install -c anaconda requests
-conda install -c anaconda pandas
+Se precisar:
+    conda install -c anaconda requests
+    conda install -c anaconda pandas
 
 Obs.: 
 Evitar misturar conda com pip:

@@ -12,7 +12,7 @@ print(f"\nSituação do serviço ES: {requests.get('http://localhost:9200/_clust
 
 passages = []
 
-for passage in open('data/passages-with-judment.txt'):
+for passage in open('data/passages-with-judment.txt', encoding="utf8"):
     fields = passage.strip().split()
     passages.append((fields[0], ' '.join(fields[1:])))
 
@@ -20,7 +20,7 @@ print(f"\nPassage[0] com julgamento: {passages[0][0], passages[0][1]}")
 
 data_carga_json = [
     {
-        'text': passage[1],
+        'content': passage[1],
         'id': passage[0],
         'meta': {
             'source': 'msmarco-passage-with-judment'
