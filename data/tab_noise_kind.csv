@@ -6,3 +6,5 @@ cod,descr
 4,Deletion of words in positions: [2]
 5,Deletion of words in positions: [penultimate]
 6,Deletion of words by probability: 20% (at least the central word)
+7,Back translation (with portuguese)
+8,With one typographical error
