@@ -7,7 +7,7 @@ to
 """
 import util_bd_dataframe  as util_bd_pandas
 
-df_original_query = util_bd_pandas.read_df_original_query()
+df_original_query,_ = util_bd_pandas.read_df_original_query()
 
 
 # migrating noisy-queries-translation-pt

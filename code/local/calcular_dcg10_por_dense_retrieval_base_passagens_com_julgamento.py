@@ -1,73 +1,54 @@
 import requests
 import math
-from haystack.document_store.elasticsearch import ElasticsearchDocumentStore
+import util_bd_dataframe  as util_bd_pandas
+import util 
+import util_elastic_search as util_es
+from haystack.retriever.dense import DensePassageRetriever
 
-#print(f"\nConfiguração do serviço ES: {requests.get('http://localhost:9200').json()}")
-#print(f"\nSituação do serviço ES: {requests.get('http://localhost:9200/_cluster/health').json()}")
 
+df_noisy_query = util_bd_pandas.read_df_noisy_query()
+df_original_query, dict_val_idcg10 = util_bd_pandas.read_df_original_query()
+df_noisy_query = util_bd_pandas.read_df_noisy_query()
+dict_judment, dict_scale_relevance = util.load_judment()
 
-doc_store = ElasticsearchDocumentStore(
-    host='localhost',
-    username='', password='',
-    index='robustez-query',
-    similarity='dot_product'
+doc_store = util_es.return_doc_store()
+retriever = DensePassageRetriever(
+    document_store=doc_store,
+    query_embedding_model='facebook/dpr-question_encoder-single-nq-base',
+    passage_embedding_model='facebook/dpr-ctx_encoder-single-nq-base',
+    # use_gpu=True, 
+    use_gpu=False,
+    embed_title=True
 )
 
 
-#print(f"\nDocumento.id=1020327: {doc_store.get_document_by_id('1020327')}")
-
-print(f"\nQtd de documentos {doc_store.get_document_count()}")
-
-print(f"\nQtd de embeddings {doc_store.get_embedding_count()}")
 
 
-
-queries = []
-for query in open('data/queries-originals.txt'):
-    fields = query.strip().split()
-    queries.append((fields[0], ' '.join(fields[1:])))
-print(f"\nquery[0] {queries[0]}")
-
-scale = {3:'perfectly relevant', 2:'highly relevant', 1:'related', 0:'Irrelevant'}
-judment = {}
-for i, line in enumerate(open('data/originals/2020qrels-pass.txt')):
-    query_nr, _, pid, eval = line.rstrip().split()
-    judment[(query_nr, pid)] = int(eval)
-
-print(f"\njudment[0] {list(judment)[0], judment[list(judment)[0]], scale[judment[list(judment)[0]]]}")
+# Calculate dcg10 and ndcg10 of noisy queries
 
 
-for query_number, query_text in queries:
-    print(query_number, query_text + ':')
+for noise_kind in df_noisy_query['cod_noise_kind'].unique():
+  calculated_metric = {'cod_original_query':[],'dcg10':[],'ndcg10':[]}
+  for index, row in df_noisy_query[df_noisy_query['cod_noise_kind']==noise_kind].iterrows():
+    cod_original_query = row["cod_original_query"]
+    idcg10 = dict_val_idcg10[cod_original_query]
+    query_text = row["text"]
+    # calculating dcg10 for query
+    dcg10 = 0
     for i, result_busca in enumerate(retriever.retrieve(query_text, top_k=10)):
       if i >= 10:
-        raise Exception('Mudar códido se trouxer mais do que 10')
-      docid = result_busca.meta['docid']
-      if (query_number, docid) not in judment:
-        print(f'{(query_number, docid)} not in judment')
-      eval = judment.get((query_number, docid), 0)
-      content = result_busca.text
-      print(f'\t{i+1:2} {docid:15} {result_busca.score:.5f}\t{eval} ({scale[eval]:18})    {content}')
+        raise 'Error: more than 10 retrieved!'
+      docid = result_busca.id
+      # print(f'docid retrieved {docid}')
+      if (cod_original_query, docid) not in dict_judment:
+        print(f'Query and passage_id not in judment:{(cod_original_query, docid)}. Assumed zero relevance. ')
+      eval = dict_judment.get((cod_original_query, docid), 0)
+      dcg10 += (2**int(eval)-1) / math.log2(i+2)
+    # calculate ndcg10 for query
+    ndcg10 = dcg10 / idcg10
+    # print(f"query {cod_original_query} has dcg10 {dcg10} ndcg10 {ndcg10} for idcg10 {idcg10} ")
+    calculated_metric['cod_original_query'].append(cod_original_query)
+    calculated_metric['dcg10'].append(dcg10)
+    calculated_metric['ndcg10'].append(ndcg10)
+  util_bd_pandas.save_calculated_metric(calculated_metric, cod_search_context=util_bd_pandas.const_cod_search_context_dpr, cod_noise_kind=noise_kind)    
 
-
-dcg10 = {}
-
-for query_number, query_text in queries:
-    dcg = 0
-    for i, result_busca in enumerate(retriever.retrieve(query_text, top_k=10)):
-      if i >= 10:
-        raise 'Mudar códido se trouxer mais do que 10'
-      docid = result_busca.meta['docid']
-      if (query_number, docid) not in judment:
-        print(f'{(query_number, docid)} not in judment')
-      eval = judment.get((query_number, docid), 0)
-      dcg += (2**int(eval)-1) / math.log2(i+2)
-    dcg10[query_number] = dcg
-    print(f'{query_number}: {dcg}')
-
-
-w = open('data/dcg10_dense_dpr_mmpr_com_julgamento.csv', 'w')
-w.write('query, dcg@10\n')
-for query in dcg10.keys():
-    w.write('{}, {}\n'.format(query, dcg10[query]))
-w.close()

@@ -2,21 +2,13 @@
 Objetivo: criar base local msmarco-passage com julgamentos
 """
 import requests
-from haystack.document_store.elasticsearch import ElasticsearchDocumentStore
+import util_elastic_search as util_es
 from haystack.retriever.dense import DensePassageRetriever
 
 #print(f"\nConfiguração do serviço ES: {requests.get('http://localhost:9200').json()}")
 print(f"\nSituação do serviço ES: {requests.get('http://localhost:9200/_cluster/health').json()}")
 
-
-doc_store = ElasticsearchDocumentStore(
-    host='localhost',
-    username='', password='',
-    index='robustez-query',
-    similarity='dot_product'
-)
-
-print(f"\n**** nqtd registros: {doc_store.get_document_count()}\n\n\n")
+doc_store = util_es.return_doc_store()
 
 retriever = DensePassageRetriever(
     document_store=doc_store,
