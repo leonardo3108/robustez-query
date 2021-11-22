@@ -1,5 +1,5 @@
-cod,descr_ranking_technique,descr_data_description,record_count
-1,ReRank,TREC 2020 MsMarco Passage, 8841823
-2,Dense Retrieval with haystack.retriever and model: facebook/dpr-question_encoder-single-nq-base (e dpr-ctx_encoder),TREC 2020 MsMarco Passage with judment,11224
-3,BM25,TREC 2020 MsMarco Passage, 8841823
-4,BM25 (haystack.retriever),TREC 2020 MsMarco Passage with judment,11224
+cod,abbreviation,descr_ranking_technique,descr_data_description,record_count
+1,ReRank,ReRank-TREC 2020 Full, TREC 2020 MsMarco Passage, 8841823
+2,DPR-TREC 2020 Judment, Dense Retrieval with haystack.retriever and model: facebook/dpr-question_encoder-single-nq-base (e dpr-ctx_encoder),TREC 2020 MsMarco Passage with judment,11224
+3,BM25,BM25 -TREC 2020 Full,TREC 2020 MsMarco Passage, 8841823
+4,BM25-TREC 2020 Judment,BM25 (haystack.retriever),TREC 2020 MsMarco Passage with judment,11224
