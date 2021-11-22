@@ -36,6 +36,8 @@ def calculate_metric_in_es(parm_type_retrieval:str):
             cod_original_query = row["cod_original_query"]
             idcg10 = dict_val_idcg10[cod_original_query]
             query_text = row["text"]
+
+
             # calculating dcg10 for query
             dcg10 = 0
             qtd_judment_assumed_zero_relevance = 0
@@ -52,6 +54,8 @@ def calculate_metric_in_es(parm_type_retrieval:str):
                 # calculate ndcg10 for query
             ndcg10 = dcg10 / idcg10
             # print(f"query {cod_original_query} has dcg10 {dcg10} ndcg10 {ndcg10} for idcg10 {idcg10} ")
+
+
             calculated_metric['cod_original_query'].append(cod_original_query)
             calculated_metric['dcg10'].append(dcg10)
             calculated_metric['ndcg10'].append(ndcg10)

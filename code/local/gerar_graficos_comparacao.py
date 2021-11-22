@@ -14,19 +14,42 @@ df_calculated_metric = util_bd_pandas.read_df_calculated_metric_with_label()[['s
 # grouped.boxplot(subplots=False, rot=45, fontsize=12, figsize=(8,10))
 # df_calculated_metric.boxplot(rot=45, fontsize=12, figsize=(8,10), column=['value','qtd_judment_assumed_zero_relevance'], by=['cod_search_context','cod_metric', 'cod_noise_kind'])
 
-fig_dims = (20, 35)
+fig_dims = (20, 80)
 fig, ax = plt.subplots(figsize=fig_dims)
-
 ax = sns.boxplot(x="search_context", hue="noise_kind", y="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
 #plt.xticks(rotation=0)
 ax.set(ylabel = 'nDCG@10', xlabel = 'context')
 plt.legend(loc='upper right', fontsize=6)
+ax.set_title('Comparative of nDCG@10: search context and noise kind [boxplot]', y=1.0, pad=-14)
+# fig.savefig('graphics\comparative_search_context_noise_kind_boxplot', transparent=False, dpi=80, bbox_inches='tight')
+# Put the legend out of the figure
 #plt.tight_layout()
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+           ncol=3,  borderaxespad=0., mode="expand", fontsize=6) # 
+# plt.legend(bbox_to_anchor=(1.05, 1), borderaxespad=0.) # loc=2,
 plt.show()
+
+
+
+
 
 exit()
 
 
+fig_dims = (10, 20)
+fig, ax = plt.subplots(figsize=fig_dims)
+
+
+
+
+ax = sns.boxplot(x="search_context", y="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
+#plt.xticks(rotation=0)
+ax.set(ylabel = 'nDCG@10', xlabel = 'context')
+plt.legend(loc='upper right', fontsize=6)
+ax.set_title('Comparative of nDCG@10: search context [boxplot]')
+#plt.tight_layout()
+fig.savefig('graphics\comparative_search_context_boxplot', transparent=False, dpi=80, bbox_inches='tight')
+plt.show()
 
 df_nDCG[['BM25_nDCG@10', 'Rerank_nDCG@10', 'Dense_nDCG@10']].describe()
 

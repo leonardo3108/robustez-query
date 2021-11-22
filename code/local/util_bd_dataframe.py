@@ -176,7 +176,7 @@ def read_df_calculated_metric_with_label():
     df_search_context = read_df_search_context()
     df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
     df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "record_count": "base_record_count", "abbreviation":"search_context"}, errors="raise")
-    df = df.drop(['cod_search_context', 'cod', 'cod_search_context', 'descr_ranking_technique', 'descr_data_description', 'cod_noise_kind'], axis = 1)
+    df = df.drop(['cod_search_context', 'cod', 'descr_ranking_technique', 'descr_data_description', 'cod_noise_kind'], axis = 1)
     return df
 
 def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int):
