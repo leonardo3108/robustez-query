@@ -4,11 +4,10 @@ Instalação de haystack:
 on ubuntu
     (conda activate robustez-query)
     pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org  farm-haystack
+
 on windows:
-    pip install farm-haystack -f https://download.pytorch.org/whl/torch_stable.html
-    Tentando: 
-        (após conda activate robustez-query (python 3.7))
-        pip install git+https://github.com/deepset-ai/haystack.git
+    (após conda activate robustez-query (python 3.7))
+    pip install git+https://github.com/deepset-ai/haystack.git
 
 
 Pygaggle e pyserini
@@ -20,6 +19,11 @@ Pygaggle e pyserini
     conda install -y -c pytorch faiss-cpu
         pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org faiss-cpu --no-cache
 
+Para gráficos:
+    python -m pip install -U pip
+    python -m pip install -U matplotlib
+    pip install seaborn
+
 Se precisar:
     conda install -c anaconda requests
     conda install -c anaconda pandas
@@ -30,9 +34,13 @@ Evitar misturar conda com pip:
     https://github.com/pandas-dev/pandas/issues/42506 
 
 i) Em caso de CondaHTTPError: conda config --set ssl_verify no
-ii) Em caso de problema com numpy
-    python -m pip uninstall numpy
-    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org numpy==1.19.2
+ii) No windows, usar prompt do anaconda para as intalações e ativar o enviroment robustez-query.
+iii) Em caso de problema com numpy
+        python -m pip uninstall numpy ou conda uninstall numpy
+        pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org numpy==1.19.2
+    ou 
+        conda install -c conda-forge numpy==1.19.2
+        conda install -c conda-forge python-dateutil
 
     # pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org numpy
 

@@ -16,9 +16,10 @@ const_cod_search_context_bm25_trec20_judment = 4
 
 
 def imprime_resumo_df(df):
-    print(df.dtypes)
-    print(df.head(5))
-    print(df.shape[0])
+    print(f"keys: {df.keys()}")
+    print(f"dtypes: {df.dtypes}")
+    print(f"head: {df.head}(5)")
+    print(f"shape: {df.shape}[0]")
 
 
 
@@ -162,6 +163,22 @@ def read_df_calculated_metric():
     # imprime_resumo_df(df)
     return df 
 
+def read_df_calculated_metric_with_label():
+    """Reads data from tab_calculated_metric.csv in dataframe 
+    """
+    df = pd.read_csv('data/tab_calculated_metric.csv', sep = ',', 
+        header=0, 
+        dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64})
+    if df.shape[0]>0:
+        df['value'] = df['value'].astype(float)        
+    df_noise_kind = read_df_noise_kind()
+    df = pd.merge(df, df_noise_kind, left_on='cod_noise_kind', right_on='cod',suffixes=(None,'_noise_kind'))
+    df_search_context = read_df_search_context()
+    df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
+    df['search_context'] = df['descr_data_description'] + ' - ' + df['descr_ranking_technique']
+    df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "record_count": "base_record_count"}, errors="raise")
+    df = df.drop(['cod_search_context', 'cod', 'cod_search_context', 'descr_ranking_technique', 'descr_data_description', 'cod_noise_kind'], axis = 1)
+    return df
 
 def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int):
     print(f"saving calculated metric cod_search_context?{cod_search_context}, cod_noise_kind:{cod_noise_kind}")
