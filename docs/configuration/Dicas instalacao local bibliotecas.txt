@@ -7,7 +7,14 @@ on ubuntu
 
 on windows:
     (após conda activate robustez-query (python 3.7))
-    pip install git+https://github.com/deepset-ai/haystack.git
+
+    haystack:
+        pip install git+https://github.com/deepset-ai/haystack.git
+
+    pygaggle:
+        pip install git+https://github.com/castorini/pygaggle.git
+        Acrescentar à variável de ambiente PATH:    %JAVA_HOME%\bin\client;%JAVA_HOME%\bin\server;
+        Para evitar erro: https://stackoverflow.com/questions/20970732/jnius-1-1-import-error 
 
 
 Pygaggle e pyserini
@@ -29,9 +36,6 @@ Se precisar:
     conda install -c anaconda pandas
 
 Obs.: 
-Evitar misturar conda com pip:
-    https://stackoverflow.com/questions/68463220/pandas-importing-error-importerror-cannot-import-name-dtypearg-from-pandas
-    https://github.com/pandas-dev/pandas/issues/42506 
 
 i) Em caso de CondaHTTPError: conda config --set ssl_verify no
 ii) No windows, usar prompt do anaconda para as intalações e ativar o enviroment robustez-query.

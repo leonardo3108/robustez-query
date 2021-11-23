@@ -9,6 +9,25 @@ import seaborn as sns
 print("oi")
 df_calculated_metric = util_bd_pandas.read_df_calculated_metric_with_label()[['search_context','cod_metric','noise_kind', 'value','qtd_judment_assumed', 'base_record_count','cod_original_query']]
 
+
+
+fig_dims = (10, 20)
+fig, ax = plt.subplots(figsize=fig_dims)
+
+
+
+
+ax = sns.boxplot(x="search_context", y="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
+#plt.xticks(rotation=0)
+ax.set(ylabel = 'nDCG@10', xlabel = 'context')
+plt.legend(loc='upper right', fontsize=6)
+ax.set_title('Comparative of nDCG@10: search context [boxplot]')
+#plt.tight_layout()
+fig.savefig('graphics\comparative_search_context_boxplot', transparent=False, dpi=80, bbox_inches='tight')
+plt.show()
+exit()
+
+
 #date_time_execution,cod_metric,cod_original_query,cod_noise_kind,cod_search_context,value,qtd_judment_assumed_zero_relevance
 # util_bd_pandas.imprime_resumo_df(df_calculated_metric)
 # grouped.boxplot(subplots=False, rot=45, fontsize=12, figsize=(8,10))
@@ -36,20 +55,6 @@ plt.show()
 exit()
 
 
-fig_dims = (10, 20)
-fig, ax = plt.subplots(figsize=fig_dims)
-
-
-
-
-ax = sns.boxplot(x="search_context", y="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
-#plt.xticks(rotation=0)
-ax.set(ylabel = 'nDCG@10', xlabel = 'context')
-plt.legend(loc='upper right', fontsize=6)
-ax.set_title('Comparative of nDCG@10: search context [boxplot]')
-#plt.tight_layout()
-fig.savefig('graphics\comparative_search_context_boxplot', transparent=False, dpi=80, bbox_inches='tight')
-plt.show()
 
 df_nDCG[['BM25_nDCG@10', 'Rerank_nDCG@10', 'Dense_nDCG@10']].describe()
 
