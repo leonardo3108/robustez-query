@@ -1,0 +1,3 @@
+abbreviation,descr
+Elastic,Elastic Search 
+Anserini,Anserini over lucene (using pyserini)

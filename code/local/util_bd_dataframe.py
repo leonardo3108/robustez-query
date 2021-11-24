@@ -107,7 +107,7 @@ def read_df_search_context():
     """Reads data from tab_search_context.csv in dataframe 
     """
     df = pd.read_csv('data/tab_search_context.csv', sep = ',', 
-        header=0, dtype= {'cod':np.int64,'abbreviation_ranking_function':str, 'abbreviation_text_base':str}) 
+        header=0, dtype= {'cod':np.int64,'abbreviation_ranking_function':str, 'abbreviation_text_base':str, 'abbreviation_text_search_engine':str}) 
     df['abbreviation'] =  df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function']
     # imprime_resumo_df(df)
     return df
@@ -176,7 +176,7 @@ def read_df_calculated_metric_with_label():
     df = pd.merge(df, df_noise_kind, left_on='cod_noise_kind', right_on='cod',suffixes=(None,'_noise_kind'))
     df_search_context = read_df_search_context()
     df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
-    df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "abbreviation":"search_context"}, errors="raise")
+    df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "abbreviation":"search_context", "abbreviation_text_search_engine":"search_engine"}, errors="raise")
     df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base'], axis = 1)
     return df
 
