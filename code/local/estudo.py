@@ -3,14 +3,11 @@ just to explore coding
 """
 print('oi')
 
-# import googletrans
-# print(googletrans.LANGUAGES)
+import pandas as pd
+import numpy as np
+import util_bd_dataframe  as util_bd_pandas
+import time
 
-from googletrans import Translator
-
-translator = Translator()
-texto_origem = 'eu te amo'
-lingua_origem = 'pt'
-lingua_destino = 'en'
-texto_traduzido = translator.translate('eu te amo',dest=lingua_destino,src=lingua_origem)
-print(texto_traduzido.text)
+print("oi")
+df = util_bd_pandas.read_df_calculated_metric_with_label()
+util_bd_pandas.imprime_resumo_df(df)

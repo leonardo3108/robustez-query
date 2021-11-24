@@ -1,6 +1,6 @@
-cod,abbreviation,descr_ranking_technique,descr_data_description,record_count
-1,ReRank@1000-TREC 2020 Full,ReRank MonoT5,TREC 2020 MsMarco Passage, 8841823
-2,DPR-TREC 2020 Judment, Dense Retrieval with haystack.retriever and model: facebook/dpr-question_encoder-single-nq-base (e dpr-ctx_encoder),TREC 2020 MsMarco Passage with judment,11224
-3,BM25-TREC 2020 Full,BM25,TREC 2020 MsMarco Passage, 8841823
-4,BM25-TREC 2020 Judment,BM25 (haystack.retriever),TREC 2020 MsMarco Passage with judment,11224
-5,ReRank@100-TREC 2020 Judment,ReRank MonoT5,TREC 2020 MsMarco Passage with judment,11224
+cod,abbreviation_ranking_function,abbreviation_text_base
+1,ReRank@1000,TREC 2020 Full
+2,DPR,TREC 2020 Judment
+3,BM25,TREC 2020 Full
+4,BM25,TREC 2020 Judment
+5,ReRank@100,TREC 2020 Judment
