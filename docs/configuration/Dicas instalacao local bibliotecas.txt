@@ -16,7 +16,10 @@ on windows:
         Acrescentar à variável de ambiente PATH:    %JAVA_HOME%\bin\client;%JAVA_HOME%\bin\server;
         Para evitar erro: https://stackoverflow.com/questions/20970732/jnius-1-1-import-error 
 
+Tradutor:
+    pip install googletrans==4.0.0-rc1
 
+    
 Pygaggle e pyserini
     pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org git+https://github.com/castorini/pygaggle.git
     pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pyserini
