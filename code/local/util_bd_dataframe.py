@@ -233,4 +233,48 @@ def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind
     # noisy_query: salva arquivo
     df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
 
+def save_dg_metric(df_dg):
+    # print(f"saving calculated metric")
+    # 'cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance' 
+    assert 'cod_original_query' in df_dg.keys(), f"Parameter df_dg.keys without cod_original_query"
+    assert 'cod_noise_kind' in df_dg.keys(), f"Parameter df_dg.keys without cod_noise_kind"
+    assert 'cod_search_context' in df_dg.keys(), f"Parameter df_dg.keys without cod_search_context"
+    assert 'value' in df_dg.keys(), f"Parameter df_dg.keys without value"
+    assert 'qtd_judment_assumed_zero_relevance' in df_dg.keys(), f"Parameter df_dg.keys without qtd_judment_assumed_zero_relevance"
+    assert len(df_dg.keys())==5, f"Parameter df_dg.keys with unknown key {df_dg.keys()}"  
+    assert (df_dg.shape[0] % const_number_of_queries) == 0, f"Error: expected multiple of {const_number_of_queries} records to match number of original queries calculated. Found {df_dg.shape[0]}."
+
+    # assert cod_search_context exists in tab_search_context.csv
+    df_search_context = read_df_search_context()
+    qtd_search_context = 0
+    for cod_search_context in df_dg['cod_search_context'].unique():
+        qtd_search_context += 1
+        assert cod_search_context in list(df_search_context['cod']), f"Error: {cod_search_context} must exists in tab_search_context.csv"
+
+    # assert cod_noise_kind exists in tab_noise_kind.csv
+    df_noise_kind = read_df_noise_kind()
+    qtd_noise_kind = 0
+    for cod_noise_kind in df_dg['cod_noise_kind'].unique():
+        qtd_noise_kind += 1
+        assert cod_noise_kind in list(df_noise_kind['cod']), f"Error: {cod_noise_kind} must exists in tab_noise_kind.csv"
+
+    # assert cod_original_query exists in tab_original_query.csv
+    df_original_query, _ = read_df_original_query()
+    qtd_original_query = 0
+    for cod_original_query in df_dg['cod_original_query'].unique():
+        qtd_original_query += 1
+        assert cod_original_query in list(df_original_query['cod']), f"Error: {cod_original_query} must exists in tab_original_query.csv"
+
+    assert df_dg.shape[0] == (qtd_original_query * qtd_noise_kind * qtd_search_context), f"Error: expected {qtd_original_query * qtd_noise_kind * qtd_search_context} records to match number product: qtd_original_query * qtd_noise_kind * qtd_search_context. Found {df_dg.shape[0]}."
+
+    df_dg['date_time_execution'] = time.strftime('%Y-%m-%d %H:%M:%S')
+    df_dg['cod_metric'] = 'DG:nDCG@10'
+
+    df_calculated_metric =  read_df_calculated_metric()
+    df_calculated_metric = df_calculated_metric.append(df_dg, ignore_index = True, sort=True)
+
+    # noisy_query: salva arquivo
+    df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
+
+
 
