@@ -8,8 +8,7 @@ import util_retriever as util_ret
 import util_bd_dataframe as util_bd_pandas
 from pygaggle.rerank.base import Query
 from pygaggle.rerank.base import hits_to_texts
-from pygaggle.rerank.transformer import MonoT5
-
+from pygaggle.rerank.transformer import MonoT5 
 class class_docto_encontrado(object):
 
     def __init__(self, id, text:str):
