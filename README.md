@@ -56,17 +56,13 @@ Iniciais:
 Queries originais e ruidosas:
 * Manipulação das queries de tradução: [noisy_queries_translation-pt.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/noisy_queries_translation_pt.ipynb).
 * Geração de typos nas queries: [noisy_queries_typo.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/noisy_queries_typo.ipynb).
-* Obtenção do nDCG@10 do BM25 sobre todas as queries (originais+ruidosas): [All_queries+BM25+Rerank+nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/All_queries+BM25+Rerank+nDCG.ipynb)
-* Obtenção do nDCG@10 do BM25+Rerank (MonoT5) sobre todas as queries (originais+ruidosas): [All_queries+BM25+Rerank+nDCG.ipynb](https://github.com/leonardo3108/robustez-query/blob/main/code/All_queries%2BBM25%2BRerank%2BnDCG.ipynb)
 
 
-## Dados preparados
+## Dados originais
 Queries originais:
 * 54 queries do TREC 2020 DL Track sobre MsMarco passages: [queries-originals.txt](https://github.com/leonardo3108/robustez-query/blob/main/data/queries-originals.txt)
 * Passagens com julgamentos do TREC 2020 DL Track: [passages-with-judment.txt](https://raw.githubusercontent.com/leonardo3108/robustez-query/main/data/passages-with-judment.txt) (utilizado na busca densa)
-* DCG@10 (BM25, rerank e densa) e IDCG@10: [dcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_originals.csv)
-* nDCG@10 (BM25, rerank e densa): [ndcg10_originals.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_originals.csv)
-
+* Data Model [model/robustez-query-mer.pdf]
 Queries originais e ruidosas:
 * DCG@10 - BM25: [dcg10_bm25.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/dcg10_bm25.csv)
 * nDCG@10 - BM25: [ndcg10_bm25.csv](https://github.com/leonardo3108/robustez-query/blob/main/data/ndcg10_bm25.csv)
@@ -85,3 +81,4 @@ Queries originais e ruidosas:
 4. [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
 5. [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
 6. [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
+7. [mMARCO: A Multilingual Version of the MS MARCO Passage Ranking Dataset. Luiz Henrique Bonifacio and Israel Campiotti and Vitor Jeronymo and Roberto Lotufo and Rodrigo Nogueira.2021](https://arxiv.org/pdf/2108.13897)
