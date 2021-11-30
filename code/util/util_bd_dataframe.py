@@ -107,8 +107,11 @@ def read_df_search_context():
     """Reads data from tab_search_context.csv in dataframe 
     """
     df = pd.read_csv('data/tab_search_context.csv', sep = ',', 
-        header=0, dtype= {'cod':np.int64,'abbreviation_ranking_function':str, 'abbreviation_text_base':str, 'abbreviation_text_search_engine':str}) 
-    df['abbreviation'] =  df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function']
+        header=0, dtype= {'cod':np.int64,'abbreviation_ranking_function':str, 'abbreviation_text_base':str, 'abbreviation_text_search_engine':str, 'abbreviation_model':str}) 
+    df['abbreviation'] = np.where(df['abbreviation_ranking_function']!='BM25', df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function'] + ':' + df['abbreviation_model'], df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function'] )   
+
+    #df[df['abbreviation_ranking_function']!='BM25']['abbreviation'] =  df[df['abbreviation_ranking_function']!='BM25']['abbreviation_text_base'] + '-' + df[df['abbreviation_ranking_function']!='BM25']['abbreviation_ranking_function'] + ':' + df[df['abbreviation_ranking_function']!='BM25']['abbreviation_model']
+    #df[df['abbreviation_ranking_function']=='BM25']['abbreviation'] =  df[df['abbreviation_ranking_function']=='BM25']['abbreviation_text_base'] + '-' + df[df['abbreviation_ranking_function']=='BM25']['abbreviation_ranking_function'] 
     # imprime_resumo_df(df)
     return df
 
@@ -177,7 +180,7 @@ def read_df_calculated_metric_with_label():
     df_search_context = read_df_search_context()
     df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
     df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "abbreviation":"search_context", "abbreviation_text_search_engine":"search_engine"}, errors="raise")
-    df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base'], axis = 1)
+    df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base', 'abbreviation_model'], axis = 1)
     return df
 
 def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int):

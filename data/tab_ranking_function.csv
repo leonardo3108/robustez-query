@@ -1,5 +1,5 @@
-abbreviation,descr,abbreviation_model
-ReRank@1000:MonoT5,ReRank using MonoT5 over 1000 first BM25 retrieval,MonoT5
-ReRank@100:MonoT5,ReRank using MonoT5 over 100 first BM25 retrieval,MonoT5 
-BM25,Best Matching,
-DPR:dpr-encoder-single-nq-base,Dense Retrieval with haystack.retriever and model (transformer): facebook/dpr-question_encoder-single-nq-base (e dpr-ctx_encoder),dpr-encoder-single-nq-base
+abbreviation,descr
+ReRank@1000,ReRank using over 1000 first BM25 retrieval
+ReRank@100,ReRank using over 100 first BM25 retrieval
+BM25,Best Matching
+DPR,Dense Retrieval 
