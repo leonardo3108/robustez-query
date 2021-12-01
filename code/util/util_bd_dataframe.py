@@ -249,7 +249,7 @@ def save_dg_metric(df_dg):
     assert 'cod_search_context' in df_dg.keys(), f"Parameter df_dg.keys without cod_search_context"
     assert 'value' in df_dg.keys(), f"Parameter df_dg.keys without value"
     assert 'qtd_judment_assumed_zero_relevance' in df_dg.keys(), f"Parameter df_dg.keys without qtd_judment_assumed_zero_relevance"
-    assert len(df_dg.keys())==5, f"Parameter df_dg.keys with unknown key {df_dg.keys()}"  
+    assert len(df_dg.keys())==6, f"Parameter df_dg.keys with unknown key {df_dg.keys()}"  
     assert (df_dg.shape[0] % const_number_of_queries) == 0, f"Error: expected multiple of {const_number_of_queries} records to match number of original queries calculated. Found {df_dg.shape[0]}."
 
     # assert cod_search_context exists in tab_search_context.csv
@@ -269,9 +269,13 @@ def save_dg_metric(df_dg):
     # assert cod_original_query exists in tab_original_query.csv
     df_original_query, _ = read_df_original_query()
     qtd_original_query = 0
-    for cod_original_query in df_dg['cod_original_query'].unique():
+    list_uniques_original_queries_with_language = []
+    for par in df_original_query[['cod', 'language']].value_counts().index.values:
+        list_uniques_original_queries_with_language.append([par[0], par[1]])
+    
+    for cod_original_query, language in df_dg[['cod_original_query', 'language']].value_counts().index.values:
         qtd_original_query += 1
-        assert cod_original_query in list(df_original_query['cod']), f"Error: {cod_original_query} must exists in tab_original_query.csv"
+        assert [cod_original_query, language] in list_uniques_original_queries_with_language, f"Error: (cod_original_query, language) ({cod_original_query}, {language}) must exists in tab_original_query.csv"
 
     assert df_dg.shape[0] == (qtd_original_query * qtd_noise_kind * qtd_search_context), f"Error: expected {qtd_original_query * qtd_noise_kind * qtd_search_context} records to match number product: qtd_original_query * qtd_noise_kind * qtd_search_context. Found {df_dg.shape[0]}."
 
