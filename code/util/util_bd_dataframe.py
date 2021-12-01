@@ -71,12 +71,12 @@ def read_df_original_query():
                 value: val_idcg10
     """
     df = pd.read_csv('data/tab_original_query.csv', sep = ';', 
-        header=0, dtype= {'cod':np.int64, 'text':str, 'val_idcg10': str})
+        header=0, dtype= {'cod':np.int64, 'language':str, 'text':str, 'val_idcg10': str})
     df['val_idcg10'] = df['val_idcg10'].astype(float)        
 
     dict_val_idcg10 = {}
     for index, row in df.iterrows():
-        dict_val_idcg10[row['cod']] = row['val_idcg10']
+        dict_val_idcg10[(row['cod'],row['language'])] = row['val_idcg10']
     # print(dict_val_idcg10)
     #imprime_resumo_df(df)
     return df, dict_val_idcg10
@@ -91,7 +91,7 @@ def read_df_noisy_query():
     """Reads data from tab_noisy_query.csv in dataframe 
     """
     df = pd.read_csv('data/tab_noisy_query.csv', sep = ';', 
-        header=0, dtype= {'cod_original_query':np.int64, 'cod_noise_kind':np.int64, 'text':str})
+        header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})
     #imprime_resumo_df(df)
     return df 
 
@@ -116,7 +116,7 @@ def read_df_search_context():
     return df
 
 
-def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_descr_noise_kind:str):
+def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_descr_noise_kind:str, parm_language:str):
     """Appends data passed in tab_noise_query.csv and insert new nose_kind in tab_noise_kind.csv
 
     Args:
@@ -124,6 +124,7 @@ def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_de
         parm_cod_noise_kind (int): cod of noise kind (can not exists in tab_noise_kind.csv)
         parm_descr_noise_kind (str): description of new noise kind
     """
+    assert parm_language in ['pt','en'], f"parm_language {parm_language} is not correct. Expected value in ['pt','en']."
     assert 'cod_original_query' in parm_dict_noisy_text, f"Error: expected 'cod_original_query' in parm_dict_noisy_text"
     assert 'text' in parm_dict_noisy_text, f"Error: expected 'cod_original_query' in parm_dict_noisy_text"
     assert len(parm_dict_noisy_text.keys()) == 2, f"Error: expected only 2 keys in parm_dict_noisy_text"
@@ -139,14 +140,15 @@ def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_de
 
     # noisy_query: ler arquivo
     df_noisy_query = pd.read_csv('data/tab_noisy_query.csv', sep = ';', 
-        header=0, dtype= {'cod_original_query':np.int64, 'cod_noise_kind':np.int64, 'text':str})   
+        header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})   
     # noisy_query: adiciona registros no arquivo
     parm_dict_noisy_text['cod_noise_kind'] = [parm_cod_noise_kind] * const_number_of_queries     
+    parm_dict_noisy_text['language'] = [parm_language] * const_number_of_queries     
     temp_df = pd.DataFrame.from_dict(parm_dict_noisy_text)
     #print(temp_df.head(3))
     df_noisy_query = df_noisy_query.append(temp_df, ignore_index = True, sort=True)
     # noisy_query: salva arquivo
-    df_noisy_query[['cod_original_query', 'cod_noise_kind', 'text']].to_csv('data/tab_noisy_query.csv', sep = ';', index=False)   
+    df_noisy_query[['cod_original_query', 'language', 'cod_noise_kind', 'text']].to_csv('data/tab_noisy_query.csv', sep = ';', index=False)   
 
 
     # noise_kind: adiciona registros no arquivo
@@ -161,7 +163,7 @@ def read_df_calculated_metric():
     """
     df = pd.read_csv('data/tab_calculated_metric.csv', sep = ',', 
         header=0, 
-        dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64})
+        dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64, 'language':str})        
     if df.shape[0]>0:
         df['value'] = df['value'].astype(float)        
     # imprime_resumo_df(df)
@@ -172,24 +174,25 @@ def read_df_calculated_metric_with_label():
     """
     df = pd.read_csv('data/tab_calculated_metric.csv', sep = ',', 
         header=0, 
-        dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64})
+        dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64, 'language':str})
     if df.shape[0]>0:
         df['value'] = df['value'].astype(float)        
     df_noise_kind = read_df_noise_kind()
-    df = pd.merge(df, df_noise_kind, left_on='cod_noise_kind', right_on='cod',suffixes=(None,'_noise_kind'))
+    df = pd.merge(df, df_noise_kind, left_on=['cod_noise_kind'], right_on=['cod'],suffixes=(None,'_noise_kind'))
     df_search_context = read_df_search_context()
     df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
     df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "abbreviation":"search_context", "abbreviation_text_search_engine":"search_engine"}, errors="raise")
     df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base', 'abbreviation_model'], axis = 1)
     return df
 
-def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int):
+def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int, parm_language:str):
     print(f"saving calculated metric cod_search_context?{cod_search_context}, cod_noise_kind:{cod_noise_kind}")
+    assert parm_language in ['pt','en'], f"parm_language {parm_language} is not correct. Expected value in ['pt','en']."
     assert 'cod_original_query' in dict_val.keys(), f"Parameter dict_val.keys without cod_original_query"
     assert 'dcg10' in dict_val.keys(), f"Parameter dict_val.keys without dcg10"
     assert 'ndcg10' in dict_val.keys(), f"Parameter dict_val.keys without ndcg10"
     assert 'qtd_judment_assumed_zero_relevance' in dict_val.keys(), f"Parameter dict_val.keys without qtd_judment_assumed_zero_relevance"
-    assert len(dict_val.keys())==4, f"Parameter dict_val.keys with unknown key {dict_val.keys()}"
+    assert len(dict_val.keys())==5, f"Parameter dict_val.keys with unknown key {dict_val.keys()}"
     assert len(dict_val['qtd_judment_assumed_zero_relevance' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['qtd_judment_assumed_zero_relevance' ])} in qtd_judment_assumed_zero_relevance"
     assert len(dict_val['dcg10' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['dcg10' ])} in dcg10"
     assert len(dict_val['ndcg10' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['ndcg10' ])} in ndcg10"
@@ -215,6 +218,7 @@ def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind
 
 
     save_dict_val['date_time_execution'] = [current_time] * const_number_of_queries    
+    save_dict_val['language'] = [parm_language] * const_number_of_queries    
     save_dict_val['cod_search_context'] = [cod_search_context] * const_number_of_queries    
     save_dict_val['cod_noise_kind'] = [cod_noise_kind] * const_number_of_queries    
 
@@ -234,11 +238,12 @@ def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind
 
 
     # noisy_query: salva arquivo
-    df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
+    df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance','language']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
 
 def save_dg_metric(df_dg):
     # print(f"saving calculated metric")
     # 'cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance' 
+    assert 'language' in df_dg.keys(), f"Parameter df_dg.keys without language"
     assert 'cod_original_query' in df_dg.keys(), f"Parameter df_dg.keys without cod_original_query"
     assert 'cod_noise_kind' in df_dg.keys(), f"Parameter df_dg.keys without cod_noise_kind"
     assert 'cod_search_context' in df_dg.keys(), f"Parameter df_dg.keys without cod_search_context"
@@ -277,7 +282,7 @@ def save_dg_metric(df_dg):
     df_calculated_metric = df_calculated_metric.append(df_dg, ignore_index = True, sort=True)
 
     # noisy_query: salva arquivo
-    df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
+    df_calculated_metric[['date_time_execution','cod_metric','cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance', 'language']].to_csv('data/tab_calculated_metric.csv', sep = ',', index=False)   
 
 
 

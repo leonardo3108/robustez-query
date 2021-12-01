@@ -55,7 +55,8 @@ def calculate_metric_in_es(parm_type_retrieval:str):
         calculated_metric = {'cod_original_query':[],'dcg10':[],'ndcg10':[], 'qtd_judment_assumed_zero_relevance':[]}
         for index, row in df_noisy_query[df_noisy_query['cod_noise_kind']==noise_kind].iterrows():
             cod_original_query = row["cod_original_query"]
-            idcg10 = dict_val_idcg10[cod_original_query]
+            language = row["language"]
+            idcg10 = dict_val_idcg10[(cod_original_query, language)]
             query_text = row["text"]
 
             # retrieve documents
