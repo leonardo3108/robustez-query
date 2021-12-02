@@ -9,11 +9,25 @@ import copy
 const_number_of_queries = 54
 const_cod_metric_dcg10='DCG@10'
 const_cod_metric_ndcg10='nDCG@10'
+
+# trec20 FULL in english
 const_cod_search_context_rerank_trec20 = 1
-const_cod_search_context_dpr_trec20_judment = 2
 const_cod_search_context_bm25_trec20 = 3
-const_cod_search_context_bm25_trec20_judment = 4
-const_cod_search_context_rerank_trec20_judment = 5
+
+# trec20 with judment in english
+const_cod_search_context_dpr_trec20_judment_en = 2
+const_cod_search_context_bm25_trec20_judment_en = 4
+const_cod_search_context_rerank_trec20_judment_en = 5
+
+# trec20 with judment in portuguese
+const_cod_search_context_dpr_trec20_judment_pt = 7
+const_cod_search_context_bm25_trec20_judment_pt = 6
+const_cod_search_context_rerank_trec20_judment_pt = 8
+
+const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
+                                                const_cod_search_context_dpr_trec20_judment_pt,
+                                                const_cod_search_context_rerank_trec20_judment_pt]
+
 
 def imprime_resumo_df(df):
     print(f"keys: {df.keys()}")
@@ -23,44 +37,6 @@ def imprime_resumo_df(df):
 
 
 
-def load_judment()->dict:
-    """
-        Gets data from data/originals/2020qrels-pass.txt 
-            (got from https://trec.nist.gov/data/deep/2020qrels-pass.txt)
-
-        Returns 2 dicts:
-            dict_judment:
-                key: tuple formed by (query_nr, passage_id)
-                value: relevance registered for the tuple
-            dict_scale_relevance:
-                key: relevance (number between 0 and 3)
-                value: label associated
-    Obs.:
-        **Passages** were judged on a four-point scale of:
-        * Not Relevant (0), 
-        * Related (1), 
-        * Highly Relevant (2), and 
-        * Perfect (3), 
-
-        where 'Related' is actually NOT Relevant---it means that the passage was on the same general topic, but did not answer the question. 
-
-        Thus, for Passage Ranking task runs (only), to compute evaluation measures that use binary relevance judgments using 
-        trec_eval, you either need to use 
-        trec_eval's -l option [trec_eval -l 2 qrelsfile runfile]
-        or modify the qrels file to change all 1 judgments to 0.
-        
-
-    """
-    scale = {3:'perfectly relevant', 2:'highly relevant', 1:'related', 0:'Irrelevant'}
-    judment = {}
-    for i, line in enumerate(open('data/originals/2020qrels-pass.txt')):
-        query_nr, _, pid, eval = line.rstrip().split()
-        query_nr = int(query_nr)
-        judment[(query_nr, pid)] = int(eval)
-
-    print(f"\nLoaded len: {len(judment)} judments; judment[0] {list(judment)[0], judment[list(judment)[0]], scale[judment[list(judment)[0]]]}")
-    assert len(judment)==11386, f" len(judment) {len(judment)} was expected to be 11386 as it is in https://trec.nist.gov/data/deep/2020qrels-pass.txt"
-    return judment, scale
 
 
 def read_df_original_query_and_dict_val_idg():
@@ -118,13 +94,14 @@ def read_df_noisy_query():
 
 def read_df_judment_and_dict_relevance():
     """Reads data from tab_judment.csv in dataframe 
+        scale = {3:'perfectly relevant', 2:'highly relevant', 1:'related', 0:'Irrelevant'}
+       In the dict_relevance, cod_docto is a str, as it is saved in the text base. 
     """
-    judment = {}
     df = pd.read_csv('data/tab_judment.csv', sep = ';', 
         header=0, dtype= {'cod_query':np.int64,'cod_docto':np.int64,'val_relevance':np.int64})   
     dict_relevance = {}
     for index, row in df.iterrows():
-        dict_relevance[(row['cod_query'],row['cod_docto'])] = row['val_relevance']
+        dict_relevance[(row['cod_query'],str(row['cod_docto']))] = row['val_relevance']
     return df, dict_relevance
 
 
@@ -148,6 +125,17 @@ def read_df_search_context():
     # imprime_resumo_df(df)
     return df
 
+def read_df_search_context_given_trec20_judment_pt():
+    """Reads data from tab_search_context.csv in dataframe 
+    """
+    df = pd.read_csv('data/tab_search_context.csv', sep = ',', 
+        header=0, dtype= {'cod':np.int64,'abbreviation_ranking_function':str, 'abbreviation_text_base':str, 'abbreviation_text_search_engine':str, 'abbreviation_model':str}) 
+    df['abbreviation'] = np.where(df['abbreviation_ranking_function']!='BM25', df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function'] + ':' + df['abbreviation_model'], df['abbreviation_text_base'] + '-' + df['abbreviation_ranking_function'] )   
+
+    #df[df['abbreviation_ranking_function']!='BM25']['abbreviation'] =  df[df['abbreviation_ranking_function']!='BM25']['abbreviation_text_base'] + '-' + df[df['abbreviation_ranking_function']!='BM25']['abbreviation_ranking_function'] + ':' + df[df['abbreviation_ranking_function']!='BM25']['abbreviation_model']
+    #df[df['abbreviation_ranking_function']=='BM25']['abbreviation'] =  df[df['abbreviation_ranking_function']=='BM25']['abbreviation_text_base'] + '-' + df[df['abbreviation_ranking_function']=='BM25']['abbreviation_ranking_function'] 
+    # imprime_resumo_df(df)
+    return df[df.cod.isin(const_list_search_context_trec20_judment_pt)]
 
 def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_language:str):
     """Appends data passed in tab_noise_query.csv
@@ -222,13 +210,13 @@ def read_df_calculated_metric_with_label():
     return df
 
 def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int, parm_language:str):
-    print(f"saving calculated metric cod_search_context?{cod_search_context}, cod_noise_kind:{cod_noise_kind}")
+    print(f"saving calculated metric cod_search_context:{cod_search_context}, cod_noise_kind:{cod_noise_kind}")
     assert parm_language in ['pt','en'], f"parm_language {parm_language} is not correct. Expected value in ['pt','en']."
     assert 'cod_original_query' in dict_val.keys(), f"Parameter dict_val.keys without cod_original_query"
     assert 'dcg10' in dict_val.keys(), f"Parameter dict_val.keys without dcg10"
     assert 'ndcg10' in dict_val.keys(), f"Parameter dict_val.keys without ndcg10"
     assert 'qtd_judment_assumed_zero_relevance' in dict_val.keys(), f"Parameter dict_val.keys without qtd_judment_assumed_zero_relevance"
-    assert len(dict_val.keys())==5, f"Parameter dict_val.keys with unknown key {dict_val.keys()}"
+    assert len(dict_val.keys())==4, f"Parameter dict_val.keys with unknown key {dict_val.keys()}"
     assert len(dict_val['qtd_judment_assumed_zero_relevance' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['qtd_judment_assumed_zero_relevance' ])} in qtd_judment_assumed_zero_relevance"
     assert len(dict_val['dcg10' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['dcg10' ])} in dcg10"
     assert len(dict_val['ndcg10' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} records to match number of original queries. Found {len(dict_val['ndcg10' ])} in ndcg10"
@@ -326,3 +314,45 @@ def save_dg_metric(df_dg):
 
 
 
+"""
+Old version:
+
+def load_dict_judment_and_scale()->dict:
+    
+        Gets data from data/originals/2020qrels-pass.txt 
+            (got from https://trec.nist.gov/data/deep/2020qrels-pass.txt)
+
+        Returns 2 dicts:
+            dict_judment:
+                key: tuple formed by (query_nr, passage_id)
+                value: relevance registered for the tuple
+            dict_scale_relevance:
+                key: relevance (number between 0 and 3)
+                value: label associated
+    Obs.:
+        **Passages** were judged on a four-point scale of:
+        * Not Relevant (0), 
+        * Related (1), 
+        * Highly Relevant (2), and 
+        * Perfect (3), 
+
+        where 'Related' is actually NOT Relevant---it means that the passage was on the same general topic, but did not answer the question. 
+
+        Thus, for Passage Ranking task runs (only), to compute evaluation measures that use binary relevance judgments using 
+        trec_eval, you either need to use 
+        trec_eval's -l option [trec_eval -l 2 qrelsfile runfile]
+        or modify the qrels file to change all 1 judgments to 0.
+        
+
+    scale = {3:'perfectly relevant', 2:'highly relevant', 1:'related', 0:'Irrelevant'}
+    dict_judment = {}
+    for i, line in enumerate(open('data/originals/2020qrels-pass.txt')):
+        query_nr, _, pid, eval = line.rstrip().split()
+        query_nr = int(query_nr)
+        dict_judment[(query_nr, pid)] = int(eval)
+
+    print(f"\nLoaded len: {len(dict_judment)} judments; dict_judment[0] {list(dict_judment)[0], dict_judment[list(dict_judment)[0]], scale[dict_judment[list(dict_judment)[0]]]}")
+    assert len(dict_judment)==11386, f" len(dict_judment) {len(dict_judment)} was expected to be 11386 as it is in https://trec.nist.gov/data/deep/2020qrels-pass.txt"
+    return dict_judment, scale
+
+"""

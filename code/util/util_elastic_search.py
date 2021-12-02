@@ -12,6 +12,7 @@ parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
 from util import util_bd_dataframe as util_bd_pandas
+from util import util_retriever as util_ret
 
 const_index_name_portuguese_base = 'msmarco-passage-with-judment-in-portuguese'
 const_index_name_english_base ='robustez-query'
@@ -47,27 +48,11 @@ def return_doc_store(parm_language:str):
 def update_embeddings(parm_language:str):
     assert parm_language in ['en','pt'], f"parm_language: {parm_language} is not valid: in ['en','pt']"
 
-    if parm_language == 'pt':
-        # experimentar também com voidful/dpr-question_encoder-bert-base-multilingual 
-        query_embedding_model = 'castorini/mdpr-question-nq'
-        passage_embedding_model = 'castorini/mdpr-passage-nq'
-    elif parm_language == 'en':
-        query_embedding_model='facebook/dpr-question_encoder-single-nq-base',
-        passage_embedding_model='facebook/dpr-ctx_encoder-single-nq-base',
-
     #print(f"\nConfiguração do serviço ES: {requests.get('http://localhost:9200').json()}")
     print(f"\nSituação do serviço ES: {requests.get('http://localhost:9200/_cluster/health').json()}")
 
     doc_store = return_doc_store(parm_language)
-    retriever = DensePassageRetriever(
-        document_store=doc_store,
-        query_embedding_model=query_embedding_model,
-        passage_embedding_model=passage_embedding_model,
-        # use_gpu=True, 
-        use_gpu=False,
-        embed_title=True
-    )
-
+    retriever = util_ret.init_retriever_es_dpr(doc_store, parm_language)
     doc_store.update_embeddings(retriever=retriever)
 
 

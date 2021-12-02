@@ -4,3 +4,6 @@ cod,abbreviation_ranking_function,abbreviation_text_base,abbreviation_text_searc
 3,BM25,TREC 2020 Full,Anserini,
 4,BM25,TREC 2020 Judment EN,Elastic,
 5,ReRank@100,TREC 2020 Judment EN,Elastic,monot5-base-msmarco
+6,BM25,TREC 2020 Judment PT,Elastic,
+7,DPR,TREC 2020 Judment EN,Elastic,castorini-mdpr-nq
+8,ReRank@100,TREC 2020 Judment PT,Elastic,monoptt5-unicamp-base-msmarco-10k
