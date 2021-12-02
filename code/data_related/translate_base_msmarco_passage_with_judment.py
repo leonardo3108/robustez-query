@@ -9,7 +9,7 @@ texto_origem = 'eu te amo'
 lingua_origem = 'en'
 lingua_destino = 'pt'
 
-w = open('data/tab_passages_with_judment.csv', 'w',  encoding="utf8")
+w = open('data/tab_passage_with_judment.csv', 'w',  encoding="utf8")
 w.write('cod_docto,language,text\n')
 for ndx, passage in tqdm(enumerate(open('data/passages-with-judment.txt', encoding="utf8")), 'translation progress bar'):
     fields = passage.strip().split()

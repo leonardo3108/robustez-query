@@ -1,3 +1,5 @@
 abbreviation, descr
-monot5-base-msmarco,Model avaialble at pygaggle.rerank.transformer.MonoT5
-Dpr-encoder-single-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base 
+monot5-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5
+facebook-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base 
+castorini-mdpr-nq,Model avaialble at castorini/mdpr-question-nq
+monoptt5-unicamp-base-msmarco-10k,Model identified by unicamp-dl/ptt5-base-msmarco-pt-10k at pygaggle.rerank.transformer.MonoT5Model

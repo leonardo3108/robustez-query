@@ -1,3 +1,4 @@
 abbreviation,descr,record_count
 TREC 2020 Full,TREC 2020 MsMarco Passage, 8841823
-TREC 2020 Judment,TREC 2020 MsMarco Passage with judment,11224
+TREC 2020 Judment EN,TREC 2020 MsMarco Passage with judment in english,11224
+TREC 2020 Judment PT,TREC 2020 MsMarco Passage with judment in portuguese,11224

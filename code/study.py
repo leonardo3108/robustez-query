@@ -9,25 +9,9 @@ if __name__ == "__main__":
     sys.path.append(os.path.abspath('.\.'))
 import pandas as pd
 from util import util_bd_dataframe as util_bd_pandas
+from util import util_elastic_search as util_es
 
-pd.set_option("display.max_columns", None)  # "display.max_rows", None,
+util_es.show_all_indexes()
+exit()
+doc_store = util_es.return_doc_store('en')
 
-
-
-df = util_bd_pandas.read_df_noise_kind()
-util_bd_pandas.imprime_resumo_df(df)
-
-
-df, dictaux = util_bd_pandas.read_df_original_query()
-util_bd_pandas.imprime_resumo_df(df)
-print(dictaux)
-
-df = util_bd_pandas.read_df_search_context()
-util_bd_pandas.imprime_resumo_df(df)
-
-df = util_bd_pandas.read_df_calculated_metric()
-util_bd_pandas.imprime_resumo_df(df)
-
-
-df = util_bd_pandas.read_df_calculated_metric_with_label()
-util_bd_pandas.imprime_resumo_df(df)

@@ -63,6 +63,7 @@ def load_judment()->dict:
     return judment, scale
 
 
+
 def read_df_original_query():
     """Reads data from tab_original_query.csv in dataframe 
         Returns dataframe with original queries 
@@ -87,6 +88,27 @@ def save_df_original_query(df):
     assert df.shape[0] == const_number_of_queries, f"Error: expected {const_number_of_queries} queries to match number of original queries"
     df.to_csv('data/tab_original_query.csv', sep = ';', index=False) 
 
+
+
+def read_df_passage_with_judment():
+    """Reads data from tab_noisy_query.csv in dataframe 
+    """
+    dict_passage = {'cod_docto':[], 'language':[], 'text':[]}
+    for i, line in enumerate(open('data/tab_passage_with_judment.csv',  encoding="utf8")):
+        if i == 0:  # header
+            continue 
+        ndx_cod_docto = line.index(';')
+        cod_docto = line[:ndx_cod_docto]
+        language = line[ndx_cod_docto+1:ndx_cod_docto+3]
+        text = line[ndx_cod_docto+4:]
+        dict_passage['cod_docto'].append(cod_docto)
+        dict_passage['language'].append(language)
+        dict_passage['text'].append(text)
+    df = pd.DataFrame.from_dict(dict_passage)  
+    df['cod_docto'] = df['cod_docto'].astype(str)      
+    return df 
+
+
 def read_df_noisy_query():
     """Reads data from tab_noisy_query.csv in dataframe 
     """
@@ -94,6 +116,7 @@ def read_df_noisy_query():
         header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})
     #imprime_resumo_df(df)
     return df 
+
 
 def read_df_noise_kind():
     """Reads data from tab_noise_kind.csv in dataframe 

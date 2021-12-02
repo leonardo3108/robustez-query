@@ -1,6 +1,6 @@
 cod,abbreviation_ranking_function,abbreviation_text_base,abbreviation_text_search_engine,abbreviation_model
 1,ReRank@1000,TREC 2020 Full,Anserini,monot5-base-msmarco
-2,DPR,TREC 2020 Judment,Elastic,dpr-encoder-single-nq-base
+2,DPR,TREC 2020 Judment EN,Elastic,facebook-nq-base
 3,BM25,TREC 2020 Full,Anserini,
-4,BM25,TREC 2020 Judment,Elastic,
-5,ReRank@100,TREC 2020 Judment,Elastic,monot5-base-msmarco
+4,BM25,TREC 2020 Judment EN,Elastic,
+5,ReRank@100,TREC 2020 Judment EN,Elastic,monot5-base-msmarco
