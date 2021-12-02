@@ -33,7 +33,7 @@ def calculate_metric_in_es(parm_type_retrieval:str):
     assert parm_type_retrieval in ("dpr","bm25","rerank"), f"parm_type_retrieval: {parm_type_retrieval} expected to be in ('dpr','bm25')"
 
 
-    _, dict_val_idcg10 = util_bd_pandas.read_df_original_query()
+    _, dict_val_idcg10 = util_bd_pandas.read_df_original_query_and_dict_val_idg()
     df_noisy_query = util_bd_pandas.read_df_noisy_query()
     dict_judment, _ = util_bd_pandas.load_judment()
 

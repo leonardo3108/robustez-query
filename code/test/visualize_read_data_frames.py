@@ -19,7 +19,7 @@ df = util_bd_pandas.read_df_noise_kind()
 util_bd_pandas.imprime_resumo_df(df)
 
 exit()
-df, dictaux = util_bd_pandas.read_df_original_query()
+df, dictaux = util_bd_pandas.read_df_original_query_and_dict_val_idg()
 util_bd_pandas.imprime_resumo_df(df)
 print(dictaux)
 

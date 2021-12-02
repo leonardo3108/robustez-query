@@ -16,7 +16,7 @@ def calcular_desconto_ganho(base, value):
 # gravar valor zero para queries originais nos contextos existentes
 df_noise_kind = util_bd_pandas.read_df_noise_kind()
 df_search_context = util_bd_pandas.read_df_search_context()
-df_original_metric,_ = util_bd_pandas.read_df_original_query()
+df_original_metric,_ = util_bd_pandas.read_df_original_query_and_dict_val_idg()
 df_dg = df_original_metric
 del df_dg['val_idcg10']
 del df_dg['text']

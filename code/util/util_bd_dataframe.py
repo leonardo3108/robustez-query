@@ -63,8 +63,7 @@ def load_judment()->dict:
     return judment, scale
 
 
-
-def read_df_original_query():
+def read_df_original_query_and_dict_val_idg():
     """Reads data from tab_original_query.csv in dataframe 
         Returns dataframe with original queries 
             and a dict dict_val_idcg10 with
@@ -87,7 +86,6 @@ def save_df_original_query(df):
     """
     assert df.shape[0] == const_number_of_queries, f"Error: expected {const_number_of_queries} queries to match number of original queries"
     df.to_csv('data/tab_original_query.csv', sep = ';', index=False) 
-
 
 
 def read_df_passage_with_judment():
@@ -116,6 +114,18 @@ def read_df_noisy_query():
         header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})
     #imprime_resumo_df(df)
     return df 
+
+
+def read_df_judment_and_dict_relevance():
+    """Reads data from tab_judment.csv in dataframe 
+    """
+    judment = {}
+    df = pd.read_csv('data/tab_judment.csv', sep = ';', 
+        header=0, dtype= {'cod_query':np.int64,'cod_docto':np.int64,'val_relevance':np.int64})   
+    dict_relevance = {}
+    for index, row in df.iterrows():
+        dict_relevance[(row['cod_query'],row['cod_docto'])] = row['val_relevance']
+    return df, dict_relevance
 
 
 def read_df_noise_kind():
@@ -290,7 +300,7 @@ def save_dg_metric(df_dg):
         assert cod_noise_kind in list(df_noise_kind['cod']), f"Error: {cod_noise_kind} must exists in tab_noise_kind.csv"
 
     # assert cod_original_query exists in tab_original_query.csv
-    df_original_query, _ = read_df_original_query()
+    df_original_query, _ = read_df_original_query_and_dict_val_idg()
     qtd_original_query = 0
     list_uniques_original_queries_with_language = []
     for par in df_original_query[['cod', 'language']].value_counts().index.values:
