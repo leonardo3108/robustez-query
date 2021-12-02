@@ -36,9 +36,6 @@ def imprime_resumo_df(df):
     print(f"shape: {df.shape}[0]")
 
 
-
-
-
 def read_df_original_query_and_dict_val_idg():
     """Reads data from tab_original_query.csv in dataframe 
         Returns dataframe with original queries 
@@ -307,6 +304,17 @@ def save_dg_metric(df_dg):
     df_dg['cod_metric'] = 'DG:nDCG@10'
 
     df_calculated_metric =  read_df_calculated_metric()
+    
+    # assert not exists calculated metric
+    """
+    list_uniques_noisy_queries = []
+    for par in df_noisy_query[['cod_original_query', 'cod_noise_kind', 'language']].value_counts().index.values:
+        list_uniques_noisy_queries.append([par[0], par[1], par[2]])
+    
+    for cod_original_query in parm_dict_noisy_text['cod_original_query']:
+        assert [cod_original_query, parm_cod_noise_kind, parm_language] not in list_uniques_noisy_queries, f"Error: (cod_original_query, cod_noise_kind, language) ({cod_original_query}, {cod_noise_kind}, {parm_language}) must not exists in tab_noisy_query.csv"
+    """
+    
     df_calculated_metric = df_calculated_metric.append(df_dg, ignore_index = True, sort=True)
 
     # noisy_query: salva arquivo

@@ -59,11 +59,14 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
         else:
             search_context = util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt  
     else:   
-        reranker = MonoT5()        
-        retriever = util_ret.init_retriever_es_bm25(doc_store, parm_language)
+        retriever = util_ret.init_retriever_es_bm25(doc_store)
         if parm_language == 'en':
+            reranker = MonoT5(pretrained_model_name_or_path='castorini/monot5-base-msmarco') # default: 'castorini/monot5-base-msmarco'        
             search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_en
-        else:
+        else:  
+            # try out unicamp-dl/mt5-base-en-pt-msmarco  
+            # results expected worse: https://arxiv.org/pdf/2108.13897
+            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')        
             search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_pt
 
 
