@@ -149,13 +149,12 @@ def read_df_search_context():
     return df
 
 
-def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_descr_noise_kind:str, parm_language:str):
-    """Appends data passed in tab_noise_query.csv and insert new nose_kind in tab_noise_kind.csv
+def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_language:str):
+    """Appends data passed in tab_noise_query.csv
 
     Args:
         parm_dict_noisy_text (dict): {'cod_original_query': [], 'text': []}
         parm_cod_noise_kind (int): cod of noise kind (can not exists in tab_noise_kind.csv)
-        parm_descr_noise_kind (str): description of new noise kind
     """
     assert parm_language in ['pt','en'], f"parm_language {parm_language} is not correct. Expected value in ['pt','en']."
     assert 'cod_original_query' in parm_dict_noisy_text, f"Error: expected 'cod_original_query' in parm_dict_noisy_text"
@@ -164,30 +163,34 @@ def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_de
     assert len(parm_dict_noisy_text['cod_original_query' ]) == len(parm_dict_noisy_text['text' ]), f"Error: expected same number of records in the lists in parm_dict_noisy_text"
     assert len(parm_dict_noisy_text['cod_original_query' ]) == const_number_of_queries, f"Error: expected {const_number_of_queries} queries to match number of original queries"
 
-    # assert parm_cod_noise_kind not exists in tab_noise_kind.csv
+    # assert parm_cod_noise_kind exists in tab_noise_kind.csv
     df_noise_kind = read_df_noise_kind()
-    # print(df_noise_kind.keys())
-    assert parm_cod_noise_kind not in list(df_noise_kind['cod']), f"Error: {parm_cod_noise_kind} can not exists in tab_noise_kind.csv"
-
+    assert parm_cod_noise_kind in list(df_noise_kind['cod']), f"Error: {parm_cod_noise_kind} must exists in tab_noise_kind.csv"
 
 
     # noisy_query: ler arquivo
-    df_noisy_query = pd.read_csv('data/tab_noisy_query.csv', sep = ';', 
-        header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})   
+    df_noisy_query = read_df_noisy_query() 
+        
+    # assert not exists noisy query
+    list_uniques_noisy_queries = []
+    for par in df_noisy_query[['cod_original_query', 'cod_noise_kind', 'language']].value_counts().index.values:
+        list_uniques_noisy_queries.append([par[0], par[1], par[2]])
+    
+    for cod_original_query in parm_dict_noisy_text['cod_original_query']:
+        assert [cod_original_query, parm_cod_noise_kind, parm_language] not in list_uniques_noisy_queries, f"Error: (cod_original_query, cod_noise_kind, language) ({cod_original_query}, {cod_noise_kind}, {parm_language}) must not exists in tab_noisy_query.csv"
+    
+
     # noisy_query: adiciona registros no arquivo
     parm_dict_noisy_text['cod_noise_kind'] = [parm_cod_noise_kind] * const_number_of_queries     
     parm_dict_noisy_text['language'] = [parm_language] * const_number_of_queries     
     temp_df = pd.DataFrame.from_dict(parm_dict_noisy_text)
+    
     #print(temp_df.head(3))
     df_noisy_query = df_noisy_query.append(temp_df, ignore_index = True, sort=True)
+    
     # noisy_query: salva arquivo
     df_noisy_query[['cod_original_query', 'language', 'cod_noise_kind', 'text']].to_csv('data/tab_noisy_query.csv', sep = ';', index=False)   
 
-
-    # noise_kind: adiciona registros no arquivo
-    df_noise_kind = df_noise_kind.append({'cod':parm_cod_noise_kind, 'descr':parm_descr_noise_kind}, ignore_index = True)
-    # noise_kind: salva arquivo
-    df_noise_kind[['cod','descr']].to_csv('data/tab_noise_kind.csv', sep = ',', index=False)   
 
 
 # calculated_metric

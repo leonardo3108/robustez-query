@@ -2,10 +2,10 @@
 Calculate idg on base passage with judment
 """
 
-import sys
 import math
 import pandas as pd
 import numpy as np
+import sys
 from pathlib import Path
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
