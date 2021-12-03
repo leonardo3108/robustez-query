@@ -66,8 +66,10 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
         else:  
             # try out unicamp-dl/mt5-base-en-pt-msmarco  
             # results expected worse: https://arxiv.org/pdf/2108.13897
-            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')        
-            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_pt
+            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_en_pt
+            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-en-pt-msmarco')        
+            #search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_multi_pt
+            #reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')        
 
 
     # Calculate dcg10 and ndcg10 of noisy queries

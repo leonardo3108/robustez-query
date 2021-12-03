@@ -22,7 +22,8 @@ const_cod_search_context_rerank_trec20_judment_en = 5
 # trec20 with judment in portuguese
 const_cod_search_context_dpr_trec20_judment_pt = 7
 const_cod_search_context_bm25_trec20_judment_pt = 6
-const_cod_search_context_rerank_trec20_judment_pt = 8
+const_cod_search_context_rerank_trec20_judment_model_multi_pt = 8
+const_cod_search_context_rerank_trec20_judment_model_en_pt = 9
 
 const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                                 const_cod_search_context_dpr_trec20_judment_pt,
