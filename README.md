@@ -46,12 +46,15 @@ Manipulated
 2. [Overview of the TREC 2020 Deep Learning Track](https://arxiv.org/abs/2102.07662) ([anotações](https://github.com/leonardo3108/robustez-query/blob/main/docs/references/OVERVIEW%20OF%20THE%20TREC%202020%20DEEP%20LEARNING%20TRACK.pdf))
 3. [Pyserini: An Easy-to-Use Python Toolkit to Support Replicable IR Research with Sparse and Dense Representations. Lin, Jimmy & Ma, Xueguang & Lin, Sheng-Chieh & Yang, Jheng-Hong & Pradeep, Ronak & Nogueira, Rodrigo. (2021).](https://cs.uwaterloo.ca/~jimmylin/publications/Lin_etal_SIGIR2021_Pyserini.pdf)
 4. [Understanding Back-Translation at Scale. Edunov et al. 2018.](https://arxiv.org/abs/1808.09381)
-5. [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
-6. [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
-7. [mMARCO: A Multilingual Version of the MS MARCO Passage Ranking Dataset. Luiz Henrique Bonifacio and Israel Campiotti and Vitor Jeronymo and Roberto Lotufo and Rodrigo Nogueira.2021](https://arxiv.org/pdf/2108.13897)
+5. [mMARCO: A Multilingual Version of the MS MARCO Passage Ranking Dataset. Luiz Henrique Bonifacio and Israel Campiotti and Vitor Jeronymo and Roberto Lotufo and Rodrigo Nogueira.2021](https://arxiv.org/pdf/2108.13897)
+6. [Dense Passage Retrieval for Open-Domain Question Answering. Vladimir Karpukhin and Barlas Oğuz and Sewon Min and Patrick Lewis and Ledell Wu and Sergey Edunov and Danqi Chen and Wen-tau Yih.2020.](https://arxiv.org/pdf/2004.04906)
+7. [mT5 AMassively Multilingual Pre-trained Text-to-Text Transformer.Linting Xue and Noah Constant and Adam Roberts and Mihir Kale and Rami Al-Rfou and Aditya Siddhant and Aditya Barua and Colin Raffel.2021](https://arxiv.org/pdf/2010.11934)
+8. [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer.Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu.2020](https://arxiv.org/pdf/1910.10683)
 
 ## Other links :
-* TREC 2020 Deep Learning Track: https://trec.nist.gov/data/deep2020.html
-* TREC 2020 Deep Learning Track Guidelines: https://microsoft.github.io/msmarco/TREC-Deep-Learning-2020
-* MS MARCO: https://microsoft.github.io/msmarco/
-
+* [TREC 2020 Deep Learning Track](https://trec.nist.gov/data/deep2020.html)
+* [TREC 2020 Deep Learning Track Guidelines](https://microsoft.github.io/msmarco/TREC-Deep-Learning-2020)
+* [MS MARCO](https://microsoft.github.io/msmarco/)
+* [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
+* [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
+* [Haystack](https://haystack.deepset.ai/overview/intro) 
