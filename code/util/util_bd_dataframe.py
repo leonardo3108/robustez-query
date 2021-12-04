@@ -9,6 +9,7 @@ import copy
 const_number_of_queries = 54
 const_cod_metric_dcg10='DCG@10'
 const_cod_metric_ndcg10='nDCG@10'
+const_cod_metric_dg_ndcg10='DG:nDCG@10'
 
 # trec20 FULL in english
 const_cod_search_context_rerank_trec20 = 1
@@ -180,7 +181,6 @@ def save_noisy_query(parm_dict_noisy_text:dict, parm_cod_noise_kind:int, parm_la
     df_noisy_query[['cod_original_query', 'language', 'cod_noise_kind', 'text']].to_csv('data/tab_noisy_query.csv', sep = ';', index=False)   
 
 
-
 # calculated_metric
 def read_df_calculated_metric():
     """Reads data from tab_calculated_metric.csv in dataframe 
@@ -257,6 +257,12 @@ def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind
     save_dict_val['value'] = dict_val['ndcg10']
     save_dict_val['cod_metric'] = [const_cod_metric_ndcg10] * const_number_of_queries
     temp_df = pd.DataFrame.from_dict(save_dict_val)    
+
+    # assert not exists calculated metric
+    for index, row in temp_df.iterrows():           
+        condition = f"cod_original_query == {row['cod_original_query']} &  cod_noise_kind == {row['cod_noise_kind']} & cod_search_context == {row['cod_search_context']} & cod_metric == '{const_cod_metric_dg_ndcg10}' & language == '{row['language']}'"
+        assert df_calculated_metric.query(condition).shape[0] == 0, f"Can not save again calculus already done for condition {condition}"
+    
     # print('dcg10', temp_df.head(5))
     df_calculated_metric = df_calculated_metric.append(temp_df, ignore_index = True, sort=True)
 
@@ -290,6 +296,10 @@ def save_dg_metric(df_dg):
         qtd_noise_kind += 1
         assert cod_noise_kind in list(df_noise_kind['cod']), f"Error: {cod_noise_kind} must exists in tab_noise_kind.csv"
 
+    qtd_language = 0
+    for language in df_dg['language'].unique():
+        qtd_language += 1
+
     # assert cod_original_query exists in tab_original_query.csv
     df_original_query, _ = read_df_original_query_and_dict_val_idg()
     qtd_original_query = 0
@@ -301,22 +311,16 @@ def save_dg_metric(df_dg):
         qtd_original_query += 1
         assert [cod_original_query, language] in list_uniques_original_queries_with_language, f"Error: (cod_original_query, language) ({cod_original_query}, {language}) must exists in tab_original_query.csv"
 
-    assert df_dg.shape[0] == (qtd_original_query * qtd_noise_kind * qtd_search_context), f"Error: expected {qtd_original_query * qtd_noise_kind * qtd_search_context} records to match number product: qtd_original_query * qtd_noise_kind * qtd_search_context. Found {df_dg.shape[0]}."
+    # assert df_dg.shape[0] == (qtd_original_query * qtd_noise_kind * qtd_search_context * qtd_language), f"Error: expected {qtd_original_query * qtd_noise_kind * qtd_search_context} records to match number product: qtd_original_query * qtd_noise_kind * qtd_search_context. Found {df_dg.shape[0]}."
 
     df_dg['date_time_execution'] = time.strftime('%Y-%m-%d %H:%M:%S')
-    df_dg['cod_metric'] = 'DG:nDCG@10'
+    df_dg['cod_metric'] = const_cod_metric_dg_ndcg10
 
     df_calculated_metric =  read_df_calculated_metric()
-    
     # assert not exists calculated metric
-    """
-    list_uniques_noisy_queries = []
-    for par in df_noisy_query[['cod_original_query', 'cod_noise_kind', 'language']].value_counts().index.values:
-        list_uniques_noisy_queries.append([par[0], par[1], par[2]])
-    
-    for cod_original_query in parm_dict_noisy_text['cod_original_query']:
-        assert [cod_original_query, parm_cod_noise_kind, parm_language] not in list_uniques_noisy_queries, f"Error: (cod_original_query, cod_noise_kind, language) ({cod_original_query}, {cod_noise_kind}, {parm_language}) must not exists in tab_noisy_query.csv"
-    """
+    for index, row in df_dg.iterrows():           
+        condition = f"cod_original_query == {row['cod_original_query']} &  cod_noise_kind == {row['cod_noise_kind']} & cod_search_context == {row['cod_search_context']} & cod_metric == 'DG:nDCG@10' & language == '{row['language']}'"
+        assert df_calculated_metric.query(condition).shape[0] == 0, f"Can not save again calculus already done for condition {condition}"
     
     df_calculated_metric = df_calculated_metric.append(df_dg, ignore_index = True, sort=True)
 
