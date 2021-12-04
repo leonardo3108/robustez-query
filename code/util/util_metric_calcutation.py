@@ -66,11 +66,21 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
         else:  
             # try out unicamp-dl/mt5-base-en-pt-msmarco  
             # results expected worse: https://arxiv.org/pdf/2108.13897
-            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_en_pt
-            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-en-pt-msmarco')        
-            #search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_multi_pt
+
+            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco
+            # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-en-pt-msmarco')        
+
+            #search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco
             #reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')        
 
+            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_small_pt
+            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-small-portuguese-vocab', token_false= '▁não', token_true='▁sim')        
+
+            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_base_pt
+            # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-portuguese-vocab', token_false= '▁não', token_true='▁sim')        
+
+            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_minilm_multi_msmarco
+            # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/multilingual-MiniLM-L6-v2-multi-msmarco', token_false= '▁false', token_true='▁true')        
 
     # Calculate dcg10 and ndcg10 of noisy queries
     for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]['cod_noise_kind'].unique(), "Progress bar - Noise kind"):

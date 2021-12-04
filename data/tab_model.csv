@@ -2,5 +2,8 @@ abbreviation, descr
 monot5-castorini-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5
 facebook-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base 
 castorini-mdpr-nq,Model avaialble at castorini/mdpr-question-nq
-monot5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at pygaggle.rerank.transformer.MonoT5Model
-monot5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at pygaggle.rerank.transformer.MonoT5Model
+monot5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at huggingface.co
+monot5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at huggingface.co
+monot5-unicamp-small_pt,unicamp-dl/ptt5-small-portuguese-vocab
+monot5-unicamp-base_pt,unicamp-dl/ptt5-base-portuguese-vocab 
+monot5-unicamp-minilm_multi-msmarco,unicamp-dl/multilingual-MiniLM-L6-v2-multi-msmarco

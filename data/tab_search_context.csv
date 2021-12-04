@@ -8,3 +8,6 @@ cod,abbreviation_ranking_function,abbreviation_text_base,abbreviation_text_searc
 7,DPR,TREC 2020 Judment EN,Elastic,castorini-mdpr-nq
 8,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base-multi-msmarco
 9,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base-en-pt-msmarco
+10,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-small_pt
+11,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base_pt
+12,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-minilm_multi-msmarco

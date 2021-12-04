@@ -1,13 +1,17 @@
 
 # import matplotlib.pyplot as plt
 # import pandas as pd
-import util_bd_dataframe  as util_bd_pandas
-import time
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sys
+from pathlib import Path
+file = Path(__file__).resolve()
+parent, root = file.parent, file.parents[1]
+sys.path.append(str(root))
+from util import util_bd_dataframe  as util_bd_pandas
 
 print("oi")
-df_calculated_metric = util_bd_pandas.read_df_calculated_metric_with_label()[['search_context','cod_metric','noise_kind', 'value','qtd_judment_assumed', 'base_record_count','cod_original_query']]
+df_calculated_metric = util_bd_pandas.read_df_calculated_metric_with_label()[['search_context','cod_metric','noise_kind', 'value','qtd_judment_assumed', 'cod_original_query', 'language']]
 
 
 
@@ -17,7 +21,7 @@ fig, ax = plt.subplots(figsize=fig_dims)
 
 
 
-ax = sns.boxplot(x="search_context", y="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
+ax = sns.boxplot(y="search_context", x="value", ax=ax, data=df_calculated_metric[df_calculated_metric['cod_metric']=='nDCG@10'])
 #plt.xticks(rotation=0)
 ax.set(ylabel = 'nDCG@10', xlabel = 'context')
 plt.legend(loc='upper right', fontsize=6)
