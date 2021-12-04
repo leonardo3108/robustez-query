@@ -213,6 +213,12 @@ def read_df_calculated_metric_with_label():
     df = pd.merge(df, df_search_context, left_on='cod_search_context', right_on='cod',suffixes=(None,'_search_context'))
     df = df.rename(columns={"descr": "noise_kind", "qtd_judment_assumed_zero_relevance": "qtd_judment_assumed", "abbreviation":"search_context", "abbreviation_text_search_engine":"search_engine"}, errors="raise")
     df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base', 'abbreviation_model'], axis = 1)
+
+    # carregar noisy queries to calculate variables
+    #df_noisy_query = read_df_noisy_query()
+    #df = pd.merge(df, df_noisy_query, left_on=['cod_original_query, 'language', 'cod_noise_kind'], right_on=['cod_original_query, 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
+    #df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.cod_original_query, row.language, row.cod_search_context)], row.value), axis = 1)
+
     return df
 
 def save_calculated_metric(dict_val:dict, cod_search_context:int, cod_noise_kind:int, parm_language:str):

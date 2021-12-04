@@ -58,3 +58,4 @@ Manipulated
 * [Pyserini](https://github.com/castorini/pyserini) - toolkit for reproducible information retrieval research with sparse and dense representations
 * [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
 * [Haystack](https://haystack.deepset.ai/overview/intro) 
+* [huggingface-transformers](https://huggingface.co/docs/transformers/index)
