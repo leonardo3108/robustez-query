@@ -1,13 +1,14 @@
 cod,abbreviation_ranking_function,abbreviation_text_base,abbreviation_text_search_engine,abbreviation_model
-1,ReRank@1000,TREC 2020 Full,Anserini,monot5-castorini-base-msmarco
+1,ReRank@1000,TREC 2020 Full,Anserini,mono-t5-castorini-base-msmarco
 2,DPR,TREC 2020 Judment EN,Elastic,facebook-nq-base
 3,BM25,TREC 2020 Full,Anserini,
 4,BM25,TREC 2020 Judment EN,Elastic,
-5,ReRank@100,TREC 2020 Judment EN,Elastic,monot5-castorini-base-msmarco
+5,ReRank@100,TREC 2020 Judment EN,Elastic,mono-t5-castorini-base-msmarco
 6,BM25,TREC 2020 Judment PT,Elastic,
 7,DPR,TREC 2020 Judment EN,Elastic,castorini-mdpr-nq
-8,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base-multi-msmarco
-9,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base-en-pt-msmarco
-10,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-small_pt
-11,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-base_pt
-12,ReRank@100,TREC 2020 Judment PT,Elastic,monot5-unicamp-minilm_multi-msmarco
+8,ReRank@100,TREC 2020 Judment PT,Elastic,mono-mt5-unicamp-base-multi-msmarco
+9,ReRank@100,TREC 2020 Judment PT,Elastic,mono-mt5-unicamp-base-en-pt-msmarco
+10,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-small_pt_vocab
+11,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base_pt_vocab
+12,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base-pt-msmarco-100k
+13,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base_t5_vocab

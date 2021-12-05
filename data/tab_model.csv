@@ -1,9 +1,10 @@
 abbreviation, descr
-monot5-castorini-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5
+mono-t5-castorini-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5
 facebook-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base 
 castorini-mdpr-nq,Model avaialble at castorini/mdpr-question-nq
-monot5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at huggingface.co
-monot5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at huggingface.co
-monot5-unicamp-small_pt,unicamp-dl/ptt5-small-portuguese-vocab
-monot5-unicamp-base_pt,unicamp-dl/ptt5-base-portuguese-vocab 
-monot5-unicamp-minilm_multi-msmarco,unicamp-dl/multilingual-MiniLM-L6-v2-multi-msmarco
+mono-mt5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at huggingface.co
+mono-mt5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at huggingface.co
+mono-ptt5-unicamp-small_pt_vocab,Model identified by unicamp-dl/ptt5-small-portuguese-vocab
+mono-ptt5-unicamp-base_pt_vocab,Model identified by unicamp-dl/ptt5-base-portuguese-vocab
+mono-ptt5-unicamp-base-pt-msmarco-100k, unicamp-dl/ptt5-base-pt-msmarco-100k
+mono-ptt5-unicamp-base_t5_vocab,Model identified by unicamp-dl/ptt5-base-t5-vocab

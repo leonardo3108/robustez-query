@@ -10,11 +10,7 @@ if __name__ == "__main__":
 import pandas as pd
 from util import util_bd_dataframe as util_bd_pandas
 
-df_calculated_metric =  util_bd_pandas.read_df_calculated_metric()
-
-df_noisy_query = read_df_noisy_query()
-df = pd.merge(df_calculated_metric, df_noisy_query, left_on=['cod_original_query', 'language', 'cod_noise_kind'], right_on=['cod_original_query', 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
-df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.cod_original_query, row.language, row.cod_search_context)], row.value), axis = 1)
+df =  util_bd_pandas.read_df_calculated_metric_with_label()
 util_bd_pandas.imprime_resumo_df(df)
 
 exit()

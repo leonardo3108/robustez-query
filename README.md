@@ -50,6 +50,7 @@ Manipulated
 6. [Dense Passage Retrieval for Open-Domain Question Answering. Vladimir Karpukhin and Barlas Oğuz and Sewon Min and Patrick Lewis and Ledell Wu and Sergey Edunov and Danqi Chen and Wen-tau Yih.2020.](https://arxiv.org/pdf/2004.04906)
 7. [mT5 AMassively Multilingual Pre-trained Text-to-Text Transformer.Linting Xue and Noah Constant and Adam Roberts and Mihir Kale and Rami Al-Rfou and Aditya Siddhant and Aditya Barua and Colin Raffel.2021](https://arxiv.org/pdf/2010.11934)
 8. [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer.Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu.2020](https://arxiv.org/pdf/1910.10683)
+9. [The Probabilistic Relevance Framework: BM25 and Beyond.Stephen Robertson & Hugo Zaragoza. 2009](https://www.researchgate.net/publication/220613776_The_Probabilistic_Relevance_Framework_BM25_and_Beyond)
 
 ## Other links :
 * [TREC 2020 Deep Learning Track](https://trec.nist.gov/data/deep2020.html)
@@ -59,3 +60,4 @@ Manipulated
 * [PyGaggle](https://github.com/castorini/pygaggle/) - gaggle of deep neural architectures for text ranking and question answering
 * [Haystack](https://haystack.deepset.ai/overview/intro) 
 * [huggingface-transformers](https://huggingface.co/docs/transformers/index)
+* [huggingface-Unicamp](https://huggingface.co/unicamp-dl)

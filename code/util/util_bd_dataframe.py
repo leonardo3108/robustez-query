@@ -6,6 +6,8 @@ import time
 import pandas as pd
 import numpy as np
 import copy
+from util import util_noise_functions as util_noise
+
 const_number_of_queries = 54
 const_cod_metric_dcg10='DCG@10'
 const_cod_metric_ndcg10='nDCG@10'
@@ -27,7 +29,9 @@ const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco = 8
 const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco = 9
 const_cod_search_context_rerank_trec20_judment_model_small_pt = 10
 const_cod_search_context_rerank_trec20_judment_model_base_pt = 11
-const_cod_search_context_rerank_trec20_judment_model_minilm_multi_msmarco = 12
+const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k = 12
+const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab = 13
+
 
 const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                                 const_cod_search_context_dpr_trec20_judment_pt,
@@ -35,8 +39,9 @@ const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_tre
                                                 const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
                                                 const_cod_search_context_rerank_trec20_judment_model_small_pt,
                                                 const_cod_search_context_rerank_trec20_judment_model_base_pt,
-                                                const_cod_search_context_rerank_trec20_judment_model_minilm_multi_msmarco
-                                                 ]
+                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
+                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
+                                                ]
 
 
 def imprime_resumo_df(df):
@@ -45,6 +50,8 @@ def imprime_resumo_df(df):
     print(f"head: {df.head}(5)")
     print(f"shape: {df.shape}[0]")
 
+def count_tokens(parm_text:str )-> str:
+    return len(util_noise.return_tokens(parm_text))
 
 def read_df_original_query_and_dict_val_idg():
     """Reads data from tab_original_query.csv in dataframe 
@@ -215,6 +222,10 @@ def read_df_calculated_metric_with_label():
     df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base', 'abbreviation_model'], axis = 1)
 
     # carregar noisy queries to calculate variables
+    df_noisy_query = read_df_noisy_query()
+    df = pd.merge(df, df_noisy_query, left_on=['cod_original_query', 'language', 'cod_noise_kind'], right_on=['cod_original_query', 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
+    df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.text), axis = 1)
+
     #df_noisy_query = read_df_noisy_query()
     #df = pd.merge(df, df_noisy_query, left_on=['cod_original_query, 'language', 'cod_noise_kind'], right_on=['cod_original_query, 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
     #df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.cod_original_query, row.language, row.cod_search_context)], row.value), axis = 1)
