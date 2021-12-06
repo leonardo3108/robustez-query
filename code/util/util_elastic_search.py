@@ -20,11 +20,11 @@ const_index_name_english_base ='robustez-query'
 
 
 def show_all_indexes():
-    return_text = requests.get('http://localhost:9200/_cat/indices').content.decode('unicode_escape')
+    return_text = requests.get('http://localhost:9200/_cat/indices?v').content.decode('unicode_escape')
     print(f"\nElastic Search indexes: {return_text}")
     print(f"\n Situation of portuguese index: {requests.get('http://localhost:9200/'+const_index_name_portuguese_base).json()}")
     print(f"\n Situation of english index: {requests.get('http://localhost:9200/'+const_index_name_english_base).json()}")
-
+    print(f"\n Doctos of portuguese index: {requests.get('http://localhost:9200/'+const_index_name_portuguese_base+'/_search?pretty=true').content.decode('unicode_escape')}")    
 def return_doc_store(parm_language:str):
     assert parm_language in ['en','pt'], f"parm_language: {parm_language} is not valid: in ['en','pt']"
 

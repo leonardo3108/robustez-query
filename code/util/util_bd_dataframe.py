@@ -31,6 +31,7 @@ const_cod_search_context_rerank_trec20_judment_model_small_pt = 10
 const_cod_search_context_rerank_trec20_judment_model_base_pt = 11
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k = 12
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab = 13
+const_cod_search_context_dpr_trec20_judment_pt_void = 14
 
 const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                                 const_cod_search_context_dpr_trec20_judment_pt,
@@ -39,7 +40,8 @@ const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_tre
                                                 const_cod_search_context_rerank_trec20_judment_model_small_pt,
                                                 const_cod_search_context_rerank_trec20_judment_model_base_pt,
                                                 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
-                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
+                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab,
+                                                const_cod_search_context_dpr_trec20_judment_pt_void
                                                 ]
 
 
@@ -52,6 +54,16 @@ def imprime_resumo_df(df):
 
 def count_tokens(parm_text:str )-> str:
     return len(util_noise.return_tokens(parm_text))
+
+def count_tokens_missing(parm_texto_a:str,parm_texto_b:str)->int:
+    lista_palavra_a = [token.lower() for token in util_noise.return_tokens(parm_texto_a)] 
+    lista_palavra_b = [token.lower() for token in util_noise.return_tokens(parm_texto_b)] 
+    
+    qtd = 0
+    for palavra in lista_palavra_a:
+        if palavra not in lista_palavra_b:
+            qtd += 1
+    return qtd
 
 def read_df_original_query_and_dict_val_idg():
     """Reads data from tab_original_query.csv in dataframe 
@@ -223,12 +235,20 @@ def read_df_calculated_metric_with_label():
 
     # carregar noisy queries to calculate variables
     df_noisy_query = read_df_noisy_query()
-    df = pd.merge(df, df_noisy_query, left_on=['cod_original_query', 'language', 'cod_noise_kind'], right_on=['cod_original_query', 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
-    df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.text), axis = 1)
 
-    #df_noisy_query = read_df_noisy_query()
-    #df = pd.merge(df, df_noisy_query, left_on=['cod_original_query, 'language', 'cod_noise_kind'], right_on=['cod_original_query, 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
-    #df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.cod_original_query, row.language, row.cod_search_context)], row.value), axis = 1)
+    # load qtd of tokens
+    df_noisy_query['qtd_tokens'] = df_noisy_query.apply(lambda row:count_tokens(row.text), axis = 1)
+
+    # load diff of tokens
+    df_original_query, _ = read_df_original_query_and_dict_val_idg()
+    dict_text_original_query = {}
+    for index, row in df_original_query.iterrows():
+        dict_text_original_query[(row['cod'],row['language'])] = row['text']
+    
+    df_noisy_query['qtd_tokens_passing'] = df_noisy_query.apply(lambda row:count_tokens_missing(row.text, dict_text_original_query[(row['cod_original_query'],row['language'])]), axis = 1)
+    df_noisy_query['qtd_tokens_missing'] = df_noisy_query.apply(lambda row:count_tokens_missing(dict_text_original_query[(row['cod_original_query'],row['language'])], row.text), axis = 1)
+
+    df = pd.merge(df, df_noisy_query, left_on=['cod_original_query', 'language', 'cod_noise_kind'], right_on=['cod_original_query', 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
 
     return df
 

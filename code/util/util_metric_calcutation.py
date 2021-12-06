@@ -46,11 +46,12 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
 
     doc_store = util_es.return_doc_store(parm_language)
     if parm_type_retrieval == 'bm25':
-        retriever = util_ret.init_retriever_es_bm25(doc_store)
         if parm_language == 'en':
             search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_en        
         else:
-            search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_pt        
+            # search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_pt 
+            search_context =  util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt_void       
+        retriever = util_ret.init_retriever_es_bm25(doc_store, parm_language)
 
     elif parm_type_retrieval == 'dpr':
         retriever = util_ret.init_retriever_es_dpr(doc_store, parm_language)
@@ -96,11 +97,11 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
             # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-portuguese-vocab', token_false= '▁false', token_true='▁true')        
 
             # falta rodar:
-            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
-            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-pt-msmarco-100k', token_false= '▁não', token_true='▁sim')        
+            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
+            # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-pt-msmarco-100k', token_false= '▁não', token_true='▁sim')        
 
-            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
-            # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-t5-vocab', token_false= '▁não', token_true='▁sim')        
+            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
+            reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-t5-vocab', token_false= '▁false', token_true='▁true')        
 
     # Calculate dcg10 and ndcg10 of noisy queries
     for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]['cod_noise_kind'].unique(), "Progress bar - Noise kind"):
