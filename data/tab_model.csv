@@ -8,3 +8,4 @@ mono-ptt5-unicamp-small_pt_vocab,Model identified by unicamp-dl/ptt5-small-portu
 mono-ptt5-unicamp-base_pt_vocab,Model identified by unicamp-dl/ptt5-base-portuguese-vocab
 mono-ptt5-unicamp-base-pt-msmarco-100k, unicamp-dl/ptt5-base-pt-msmarco-100k
 mono-ptt5-unicamp-base_t5_vocab,Model identified by unicamp-dl/ptt5-base-t5-vocab
+voidful-dpr-mdpr-bert-base,Model identified by voidful/dpr-question_encoder-bert-base-multilingual

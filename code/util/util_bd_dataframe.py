@@ -32,7 +32,6 @@ const_cod_search_context_rerank_trec20_judment_model_base_pt = 11
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k = 12
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab = 13
 
-
 const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                                 const_cod_search_context_dpr_trec20_judment_pt,
                                                 const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
@@ -42,6 +41,7 @@ const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_tre
                                                 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
                                                 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
                                                 ]
+
 
 
 def imprime_resumo_df(df):

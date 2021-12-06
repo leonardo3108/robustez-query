@@ -88,8 +88,7 @@ def token_permutation_list_index_pair(sentence, list_change_index_pair:list):
     new_sentence = " ".join(res)
     # print(f"Sentença antes: {sentence}; após ruído: {new_sentence}")
     if new_sentence == sentence:
-        print(f"Não houve mudança em sentença antes: {sentence}; após ruído: {new_sentence}")
-        
+        print(f"Não houve mudança em sentença antes: {sentence}; após ruído: {new_sentence}")       
     return new_sentence
 
 def return_tokens(sentence:str)->list:

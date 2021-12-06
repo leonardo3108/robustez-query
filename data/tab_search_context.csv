@@ -5,10 +5,11 @@ cod,abbreviation_ranking_function,abbreviation_text_base,abbreviation_text_searc
 4,BM25,TREC 2020 Judment EN,Elastic,
 5,ReRank@100,TREC 2020 Judment EN,Elastic,mono-t5-castorini-base-msmarco
 6,BM25,TREC 2020 Judment PT,Elastic,
-7,DPR,TREC 2020 Judment EN,Elastic,castorini-mdpr-nq
+7,DPR,TREC 2020 Judment PT,Elastic,castorini-mdpr-nq
 8,ReRank@100,TREC 2020 Judment PT,Elastic,mono-mt5-unicamp-base-multi-msmarco
 9,ReRank@100,TREC 2020 Judment PT,Elastic,mono-mt5-unicamp-base-en-pt-msmarco
 10,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-small_pt_vocab
 11,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base_pt_vocab
 12,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base-pt-msmarco-100k
 13,ReRank@100,TREC 2020 Judment PT,Elastic,mono-ptt5-unicamp-base_t5_vocab
+14,DPR,TREC 2020 Judment PT,Elastic,voidful-dpr-mdpr-bert-base

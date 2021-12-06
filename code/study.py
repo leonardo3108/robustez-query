@@ -15,6 +15,7 @@ util_bd_pandas.imprime_resumo_df(df)
 
 exit()
 
+
 # assert not exists calculated metric
 for index, row in df_calculated_metric[df_calculated_metric['cod_noise_kind'] ==0].iterrows():           
     condition = f"cod_original_query == {row['cod_original_query']} &  cod_noise_kind == {row['cod_noise_kind']} & cod_search_context == {row['cod_search_context']} & cod_metric == 'DG:nDCG@10' & language == '{row['language']}'"

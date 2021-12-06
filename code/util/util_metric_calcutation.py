@@ -96,13 +96,11 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
             # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-portuguese-vocab', token_false= '▁false', token_true='▁true')        
 
             # falta rodar:
-            search_context = const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
+            search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
             reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-pt-msmarco-100k', token_false= '▁não', token_true='▁sim')        
 
-            # search_context = const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
+            # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
             # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-t5-vocab', token_false= '▁não', token_true='▁sim')        
-
-
 
     # Calculate dcg10 and ndcg10 of noisy queries
     for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]['cod_noise_kind'].unique(), "Progress bar - Noise kind"):
