@@ -1,11 +1,11 @@
-abbreviation, descr
-mono-t5-castorini-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5
-facebook-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base 
-castorini-mdpr-nq,Model avaialble at castorini/mdpr-question-nq
-mono-mt5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at huggingface.co
-mono-mt5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at huggingface.co
-mono-ptt5-unicamp-small_pt_vocab,Model identified by unicamp-dl/ptt5-small-portuguese-vocab
-mono-ptt5-unicamp-base_pt_vocab,Model identified by unicamp-dl/ptt5-base-portuguese-vocab
-mono-ptt5-unicamp-base-pt-msmarco-100k, unicamp-dl/ptt5-base-pt-msmarco-100k
-mono-ptt5-unicamp-base_t5_vocab,Model identified by unicamp-dl/ptt5-base-t5-vocab
-voidful-dpr-mdpr-bert-base,Model identified by voidful/dpr-question_encoder-bert-base-multilingual
+abbreviation,descr,memory_used_mb
+mono-t5-castorini-base-msmarco,Model identified by castorini/monot5-base-msmarco at pygaggle.rerank.transformer.MonoT5,850
+facebook-nq-base,Model avaialble at facebook/dpr-question_encoder-single-nq-base,836
+castorini-mdpr-nq,Model avaialble at castorini/mdpr-question-nq,679
+mono-mt5-unicamp-base-multi-msmarco,Model identified by unicamp-dl/mt5-base-multi-msmarco at huggingface.co,2170
+mono-mt5-unicamp-base-en-pt-msmarco,Model identified by unicamp-dl/mt5-base-en-pt-msmarco at huggingface.co,2170
+mono-ptt5-unicamp-small_pt_vocab,Model identified by unicamp-dl/ptt5-small-portuguese-vocab,231
+mono-ptt5-unicamp-base_pt_vocab,Model identified by unicamp-dl/ptt5-base-portuguese-vocab,850
+mono-ptt5-unicamp-base-pt-msmarco-100k, unicamp-dl/ptt5-base-pt-msmarco-100k,850
+mono-ptt5-unicamp-base_t5_vocab,Model identified by unicamp-dl/ptt5-base-t5-vocab,850
+voidful-dpr-mdpr-bert-base,Model identified by voidful/dpr-question_encoder-bert-base-multilingual,1360
