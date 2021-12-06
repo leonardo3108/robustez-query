@@ -117,6 +117,27 @@ def read_df_noisy_query():
     #imprime_resumo_df(df)
     return df 
 
+def read_df_noisy_query_with_extra_columns():
+    """Reads data from tab_noisy_query.csv in dataframe 
+    """
+    df = pd.read_csv('data/tab_noisy_query.csv', sep = ';', 
+        header=0, dtype= {'cod_original_query':np.int64, 'language':str, 'cod_noise_kind':np.int64, 'text':str})
+    #imprime_resumo_df(df)
+    # load qtd of tokens
+    df['qtd_tokens'] = df.apply(lambda row:count_tokens(row.text), axis = 1)
+
+    # load diff of tokens
+    df_original_query, _ = read_df_original_query_and_dict_val_idg()
+    
+    dict_text_original_query = {}
+    for index, row in df_original_query.iterrows():
+        dict_text_original_query[(row['cod'],row['language'])] = row['text']
+    
+    df['qtd_tokens_passing'] = df.apply(lambda row:count_tokens_missing(row.text, dict_text_original_query[(row['cod_original_query'],row['language'])]), axis = 1)
+    df['qtd_tokens_missing'] = df.apply(lambda row:count_tokens_missing(dict_text_original_query[(row['cod_original_query'],row['language'])], row.text), axis = 1)
+
+    return df 
+
 
 def read_df_judment_and_dict_relevance():
     """Reads data from tab_judment.csv in dataframe 
@@ -234,19 +255,7 @@ def read_df_calculated_metric_with_label():
     df = df.drop(['cod_search_context', 'cod', 'abbreviation_ranking_function', 'abbreviation_text_base', 'abbreviation_model'], axis = 1)
 
     # carregar noisy queries to calculate variables
-    df_noisy_query = read_df_noisy_query()
-
-    # load qtd of tokens
-    df_noisy_query['qtd_tokens'] = df_noisy_query.apply(lambda row:count_tokens(row.text), axis = 1)
-
-    # load diff of tokens
-    df_original_query, _ = read_df_original_query_and_dict_val_idg()
-    dict_text_original_query = {}
-    for index, row in df_original_query.iterrows():
-        dict_text_original_query[(row['cod'],row['language'])] = row['text']
-    
-    df_noisy_query['qtd_tokens_passing'] = df_noisy_query.apply(lambda row:count_tokens_missing(row.text, dict_text_original_query[(row['cod_original_query'],row['language'])]), axis = 1)
-    df_noisy_query['qtd_tokens_missing'] = df_noisy_query.apply(lambda row:count_tokens_missing(dict_text_original_query[(row['cod_original_query'],row['language'])], row.text), axis = 1)
+    df_noisy_query = read_df_noisy_query_with_extra_columns()
 
     df = pd.merge(df, df_noisy_query, left_on=['cod_original_query', 'language', 'cod_noise_kind'], right_on=['cod_original_query', 'language', 'cod_noise_kind'],suffixes=(None,'_noise_kind'))
 
