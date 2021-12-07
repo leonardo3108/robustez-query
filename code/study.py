@@ -9,9 +9,9 @@ if __name__ == "__main__":
     sys.path.append(os.path.abspath('.\.'))
 import pandas as pd
 from util import util_bd_dataframe as util_bd_pandas
+pd.set_option("display.max_columns", None)  # "display.max_rows", None,
 
-
-df =  util_bd_pandas.read_df_calculated_metric_with_label()
+df =  util_bd_pandas.read_df_calculated_metric_with_label(parm_list_search_context=util_bd_pandas.list_search_context_pt_dpr)
 util_bd_pandas.imprime_resumo_df(df)
 
 exit()

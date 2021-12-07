@@ -22,14 +22,14 @@ const_cod_search_context_dpr_trec20_judment_en = 2
 const_cod_search_context_bm25_trec20_judment_en = 4
 const_cod_search_context_rerank_trec20_judment_en = 5
 
-const_list_search_context_en_trec20_full = [const_cod_search_context_rerank_trec20,
+list_search_context_en_trec20_full = [const_cod_search_context_rerank_trec20,
                                        const_cod_search_context_bm25_trec20]
 
-const_list_search_context_en_trec20_judment = [const_cod_search_context_dpr_trec20_judment_en,
+list_search_context_en_trec20_judment = [const_cod_search_context_dpr_trec20_judment_en,
                                                const_cod_search_context_bm25_trec20_judment_en,
                                                const_cod_search_context_rerank_trec20_judment_en]
 
-const_list_search_context_en = [const_cod_search_context_rerank_trec20,
+list_search_context_en = [const_cod_search_context_rerank_trec20,
                                 const_cod_search_context_bm25_trec20,
                                 const_cod_search_context_dpr_trec20_judment_en,
                                 const_cod_search_context_bm25_trec20_judment_en,
@@ -46,7 +46,7 @@ const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_m
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab = 13
 const_cod_search_context_dpr_trec20_judment_pt_void = 14
 
-const_list_search_context_pt = [const_cod_search_context_bm25_trec20_judment_pt,
+list_search_context_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                 const_cod_search_context_dpr_trec20_judment_pt,
                                 const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
                                 const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
@@ -57,7 +57,7 @@ const_list_search_context_pt = [const_cod_search_context_bm25_trec20_judment_pt,
                                 const_cod_search_context_dpr_trec20_judment_pt_void
                                 ]
 
-const_list_search_context_pt_rerank = [const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
+list_search_context_pt_rerank = [const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
                                        const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
                                        const_cod_search_context_rerank_trec20_judment_model_small_pt,
                                        const_cod_search_context_rerank_trec20_judment_model_base_pt,
@@ -65,7 +65,7 @@ const_list_search_context_pt_rerank = [const_cod_search_context_rerank_trec20_ju
                                        const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
                                        ]
 
-const_list_search_context_pt_dpr = [
+list_search_context_pt_dpr = [
                                         const_cod_search_context_dpr_trec20_judment_pt,
                                         const_cod_search_context_dpr_trec20_judment_pt_void
                                        ]
@@ -264,7 +264,7 @@ def read_df_calculated_metric():
     # imprime_resumo_df(df)
     return df 
 
-def read_df_calculated_metric_with_label():
+def read_df_calculated_metric_with_label(parm_list_search_context:list=None):
     """Reads data from tab_calculated_metric.csv in dataframe 
     """
     df = pd.read_csv('data/tab_calculated_metric.csv', sep = ',', 
@@ -272,6 +272,10 @@ def read_df_calculated_metric_with_label():
         dtype= {'date_time_execution':str,'cod_metric':str,'cod_original_query':np.int64,'cod_noise_kind':np.int64,'cod_search_context':np.int64,'value':str, 'qtd_judment_assumed_zero_relevance':np.int64, 'language':str})
     if df.shape[0]>0:
         df['value'] = df['value'].astype(float)        
+
+    if parm_list_search_context:
+        df = df.query('cod_search_context in ' + str(parm_list_search_context))
+
     df_noise_kind = read_df_noise_kind()
     df = pd.merge(df, df_noise_kind, left_on='cod_noise_kind', right_on='cod',suffixes=(None,'_noise_kind'))
     df_search_context = read_df_search_context()
