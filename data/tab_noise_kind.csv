@@ -1,10 +1,10 @@
-cod,descr
-0,No changes in the text
-1,Permutation of words: first and second
-2,Permutation of words: last and penultimate
-3,Permutation of words: first and last
-4,Deletion of words in positions: [2]
-5,Deletion of words in positions: [penultimate]
-6,Deletion of words by probability: 20% (at least the central word)
-7,Back translation (with portuguese)
-8,With one typographical error
+cod,descr,abbreviation
+0,No changes in the text,No changes
+1,Permutation of words: first and second,Permute: 1st x 2nd
+2,Permutation of words: last and penultimate,Permute: last x penult
+3,Permutation of words: first and last,Permutate: first x last
+4,Deletion of words in positions: [2],Delete: 2nd
+5,Deletion of words in positions: [penultimate],Delete: penult
+6,Deletion of words by probability: 20% (at least the central word),Delete: 20%
+7,Back translation (with portuguese),Back translation en-pt
+8,With one typographical error,Typo
