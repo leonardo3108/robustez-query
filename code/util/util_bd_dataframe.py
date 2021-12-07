@@ -22,6 +22,19 @@ const_cod_search_context_dpr_trec20_judment_en = 2
 const_cod_search_context_bm25_trec20_judment_en = 4
 const_cod_search_context_rerank_trec20_judment_en = 5
 
+const_list_search_context_en_trec20_full = [const_cod_search_context_rerank_trec20,
+                                       const_cod_search_context_bm25_trec20]
+
+const_list_search_context_en_trec20_judment = [const_cod_search_context_dpr_trec20_judment_en,
+                                               const_cod_search_context_bm25_trec20_judment_en,
+                                               const_cod_search_context_rerank_trec20_judment_en]
+
+const_list_search_context_en = [const_cod_search_context_rerank_trec20,
+                                const_cod_search_context_bm25_trec20,
+                                const_cod_search_context_dpr_trec20_judment_en,
+                                const_cod_search_context_bm25_trec20_judment_en,
+                                const_cod_search_context_rerank_trec20_judment_en]
+
 # trec20 with judment in portuguese
 const_cod_search_context_dpr_trec20_judment_pt = 7
 const_cod_search_context_bm25_trec20_judment_pt = 6
@@ -33,17 +46,29 @@ const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_m
 const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab = 13
 const_cod_search_context_dpr_trec20_judment_pt_void = 14
 
-const_list_search_context_trec20_judment_pt = [const_cod_search_context_bm25_trec20_judment_pt,
-                                                const_cod_search_context_dpr_trec20_judment_pt,
-                                                const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
-                                                const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
-                                                const_cod_search_context_rerank_trec20_judment_model_small_pt,
-                                                const_cod_search_context_rerank_trec20_judment_model_base_pt,
-                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
-                                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab,
-                                                const_cod_search_context_dpr_trec20_judment_pt_void
-                                                ]
+const_list_search_context_pt = [const_cod_search_context_bm25_trec20_judment_pt,
+                                const_cod_search_context_dpr_trec20_judment_pt,
+                                const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
+                                const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
+                                const_cod_search_context_rerank_trec20_judment_model_small_pt,
+                                const_cod_search_context_rerank_trec20_judment_model_base_pt,
+                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
+                                const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab,
+                                const_cod_search_context_dpr_trec20_judment_pt_void
+                                ]
 
+const_list_search_context_pt_rerank = [const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco,
+                                       const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco,
+                                       const_cod_search_context_rerank_trec20_judment_model_small_pt,
+                                       const_cod_search_context_rerank_trec20_judment_model_base_pt,
+                                       const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k,
+                                       const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
+                                       ]
+
+const_list_search_context_pt_rerank = [
+                                        const_cod_search_context_dpr_trec20_judment_pt,
+                                        const_cod_search_context_dpr_trec20_judment_pt_void
+                                       ]
 
 
 def imprime_resumo_df(df):
