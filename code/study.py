@@ -13,7 +13,7 @@ pd.set_option("display.max_columns", None)  # "display.max_rows", None,
 
 df =  util_bd_pandas.read_df_calculated_metric_with_label(parm_list_search_context=util_bd_pandas.list_search_context_pt_dpr)
 util_bd_pandas.imprime_resumo_df(df)
-
+print(df.columns)
 exit()
 
 
