@@ -65,7 +65,7 @@ const_list_search_context_pt_rerank = [const_cod_search_context_rerank_trec20_ju
                                        const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
                                        ]
 
-const_list_search_context_pt_rerank = [
+const_list_search_context_pt_dpr = [
                                         const_cod_search_context_dpr_trec20_judment_pt,
                                         const_cod_search_context_dpr_trec20_judment_pt_void
                                        ]
