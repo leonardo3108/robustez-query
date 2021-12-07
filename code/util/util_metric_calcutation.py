@@ -49,8 +49,7 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
         if parm_language == 'en':
             search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_en        
         else:
-            # search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_pt 
-            search_context =  util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt_void       
+            search_context = util_bd_pandas.const_cod_search_context_bm25_trec20_judment_pt 
         retriever = util_ret.init_retriever_es_bm25(doc_store, parm_language)
 
     elif parm_type_retrieval == 'dpr':
@@ -58,7 +57,8 @@ def calculate_metric_in_es(parm_type_retrieval:str, parm_language:str):
         if parm_language == 'en':
             search_context = util_bd_pandas.const_cod_search_context_dpr_trec20_judment_en     
         else:
-            search_context = util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt  
+            # search_context = util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt  
+            search_context =  util_bd_pandas.const_cod_search_context_dpr_trec20_judment_pt_void       
     else:   
         retriever = util_ret.init_retriever_es_bm25(doc_store)
         if parm_language == 'en':

@@ -38,7 +38,7 @@ print(f"len(nDCG10_original): {len(nDCG10_original)} list(nDCG10_original.items(
 # teste    
 # print(calcular_desconto_ganho(1030303, 4, 0.676534))
 #criterion = 'cod_metric == "nDCG@10"'
-criterion = 'cod_metric == "nDCG@10" & cod_search_context == 13' # util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_base_pt
+criterion = 'cod_metric == "nDCG@10" & cod_search_context == 14' # util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_base_pt
 
 df_dg = df_calculated_metric.query(criterion)[['cod_original_query','cod_noise_kind','cod_search_context','value','qtd_judment_assumed_zero_relevance','language']]
 df_dg['value'] = df_dg.apply(lambda row:calcular_desconto_ganho(nDCG10_original[(row.cod_original_query, row.language, row.cod_search_context)], row.value), axis = 1)
