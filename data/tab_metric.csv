@@ -1,3 +1,4 @@
 cod,abbreviation,name
-nDCG@10,nDCG@10,Normalized Discounted cumulative gain at position 10
-DCG@10,DCG@10,Discounted cumulative gain at position 10
+nDCG@10,nDCG@10,Normalized Discounted cumulative gain at 10 documents
+DCG@10,DCG@10,Discounted cumulative gain at 10 documents
+DG:nDCG@10,DG:nDCG@10,Discount or Gain on normalized Discounted cumulative gain at 10 documents
