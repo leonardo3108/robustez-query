@@ -7,12 +7,13 @@
 
 ## Documentação do projeto
 * [Apresentação inicial](https://docs.google.com/presentation/d/1ABkHVwfJ2r5Sga0m-WXv1LlMiF9o8vpB7wpiZ8N5Oa8/edit?usp=sharing)
+* [Presentation Video, starting at 2:32:00 of do video link](https://drive.google.com/file/d/17IhEn46Oz8yC5HWZ69QVKVL6cwB60WBb/view?usp=drivesdk)
 * [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%202%20-%2020211111.pptx) (entrega parcial 1)
-* [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%203%20-%2020211124.pptx) (entrega parcial 2)
+* [Presentation Video, starting at 0:44:14 of do video link](https://drive.google.com/file/d/1cdYMT8aAcy5hywJPtnNf7HeaOFi4jJs5/view?usp=drivesdk)
+* [Apresentação 24/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%203%20-%2020211124.pptx) (entrega parcial 2)
+* [Presentation Video, starting at 3:35:33 of do video link](https://drive.google.com/file/d/11c0eRFzRrtnQ4Fqgx1wtOLj8PUo13pHQ/view?usp=drivesdk)
 * [Apresentação 09/12/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%20final%20-%2020211209.pptx) (entrega final)
-* [Presentation Video, starting at 2h17' of do video link](https://drive.google.com/file/d/1sWHqGdw6m06R7BS-E3_oZU05GRmF1Bw9/view?usp=drivesdk)
-
-https://drive.google.com/file/d/1sWHqGdw6m06R7BS-E3_oZU05GRmF1Bw9/view?usp=drivesdk
+* [Presentation Video, starting at 2:17:00 of do video link](https://drive.google.com/file/d/1sWHqGdw6m06R7BS-E3_oZU05GRmF1Bw9/view?usp=drivesdk)
 * [Relatório final](https://docs.google.com/document/d/1qKcAyIeIsg9NzwFDsiEImhU1i_mZw4Ye2pQmFh5Lbxw/edit?usp=sharing)
 
 ## Metodology
