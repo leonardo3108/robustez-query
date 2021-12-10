@@ -10,7 +10,11 @@
 * [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%202%20-%2020211111.pptx) (entrega parcial 1)
 * [Apresentação 11/11/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%203%20-%2020211124.pptx) (entrega parcial 2)
 * [Apresentação 09/12/2021](https://github.com/leonardo3108/robustez-query/blob/main/docs/presentations/Apresenta%C3%A7%C3%A3o%20final%20-%2020211209.pptx) (entrega final)
+* [Presentation Video, starting at 2h17' of do video link](https://drive.google.com/file/d/1sWHqGdw6m06R7BS-E3_oZU05GRmF1Bw9/view?usp=drivesdk)
+
+https://drive.google.com/file/d/1sWHqGdw6m06R7BS-E3_oZU05GRmF1Bw9/view?usp=drivesdk
 * [Relatório final](https://docs.google.com/document/d/1qKcAyIeIsg9NzwFDsiEImhU1i_mZw4Ye2pQmFh5Lbxw/edit?usp=sharing)
+
 ## Metodology
 * Apply [noise kind](https://github.com/leonardo3108/robustez-query/blob/main/data/tab_noise_kind.csv)
 * over [original queries](https://github.com/leonardo3108/robustez-query/blob/main/data/tab_original_query.csv)
