@@ -53,8 +53,15 @@ if parm_language == 'en':
     reranker = MonoT5(pretrained_model_name_or_path='castorini/monot5-base-msmarco') # default: 'castorini/monot5-base-msmarco'        
     search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_en
 else:  
-    search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
-    reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-pt-msmarco-100k', token_false= '▁não', token_true='▁sim')        
+    #search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_pt_msmarco_100k
+    #reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-pt-msmarco-100k', token_false= '▁não', token_true='▁sim')       
+    #id_modelo = 'ptt5-base-msmarco-100k' 
+
+
+    # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco
+    reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')     
+    id_modelo = 'mt5-base-multi-msmarco'    
+
 
     # try out unicamp-dl/mt5-base-en-pt-msmarco  
     # results expected worse: https://arxiv.org/pdf/2108.13897
@@ -62,8 +69,6 @@ else:
     # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_en_pt_msmarco
     # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-en-pt-msmarco')        
 
-    #search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_multi_pt_msmarco
-    #reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/mt5-base-multi-msmarco')        
 
     # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_small_pt
     # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-small-portuguese-vocab', token_false= '▁não', token_true='▁sim')        
@@ -78,13 +83,16 @@ else:
     # search_context = util_bd_pandas.const_cod_search_context_rerank_trec20_judment_model_mono_ptt5_unicamp_base_t5_vocab
     # reranker = MonoT5(pretrained_model_name_or_path='unicamp-dl/ptt5-base-t5-vocab', token_false= '▁false', token_true='▁true')        
 
+
 # Calculate dcg10 and ndcg10 of noisy queries
-calculated_score = {'cod_original_query':[],'score':[],'eval':[], 'qtd_judment_assumed_zero_relevance':[],'noise_kind':[]}
+bm25_qtd = 50
+rerank_qtd = 20
+calculated_score = {'id_modelo':[], 'bm25_qtd': [], 'rerank_qtd':[], 'cod_original_query':[],'score':[],'eval':[], 'qtd_judment_assumed_zero_relevance':[],'noise_kind':[]}
 for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]['cod_noise_kind'].unique(), "Progress bar - Noise kind"):
     for index, row in tqdm(df_noisy_query[(df_noisy_query['cod_noise_kind']==noise_kind) & (df_noisy_query['language']==parm_language)].iterrows(), "Progress bar - query"):       
         cod_original_query = row["cod_original_query"]
         query_text = row["text"]
-        doctos_returned_bm25 = retriever.retrieve(query_text, top_k=100)
+        doctos_returned_bm25 = retriever.retrieve(query_text, top_k=bm25_qtd)
         list_doctos = []
         for docto in doctos_returned_bm25:
             dt = class_docto_encontrado(id=docto.id, text=docto.content)
@@ -103,6 +111,9 @@ for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]
             else:
                 calculated_score['qtd_judment_assumed_zero_relevance'].append(0)
             eval = dict_judment.get((cod_original_query, docid), 0)
+            calculated_score['id_modelo'].append(id_modelo)
+            calculated_score['bm25_qtd'].append(bm25_qtd)
+            calculated_score['rerank_qtd'].append(rerank_qtd)            
             calculated_score['cod_original_query'].append(cod_original_query)
             calculated_score['noise_kind'].append(noise_kind)
             calculated_score['score'].append(docto_encontrado.score)
@@ -111,6 +122,6 @@ for noise_kind in tqdm(df_noisy_query[df_noisy_query['language']==parm_language]
         # calculate ndcg10 for query
         print(f" Done for noise_kind: {noise_kind} em {time.strftime('%Y-%m-%d %H:%M:%S')}")    
     temp_df = pd.DataFrame.from_dict(calculated_score)  
-    temp_df.to_csv('data/comparative_rerank_score_judment_eval.csv', sep = ';', index=False)   
+    temp_df.to_csv('data/comparative_rerank_score_judment_eval_mt5.csv', sep = ';', index=False)   
     # break
 
